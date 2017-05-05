@@ -16,6 +16,7 @@ Global
 		DiceBagApp\DiceBagApp\DiceBagApp.projitems*{497ab3a6-1aa9-42d8-9c6f-28d71c858d3f}*SharedItemsImports = 4
 		DiceBagApp\DiceBagApp\DiceBagApp.projitems*{6b6eef79-57f3-4af5-81ae-7dd7e174940b}*SharedItemsImports = 13
 		DiceBagApp\DiceBagApp\DiceBagApp.projitems*{a6c84aa4-01a9-4e62-9191-3857d45d793a}*SharedItemsImports = 4
+		DiceBagApp\DiceBagApp\DiceBagApp.projitems*{f0a94384-f653-4ea7-9d54-e6032a1afe7f}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU

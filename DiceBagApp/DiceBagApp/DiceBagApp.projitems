@@ -15,6 +15,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Bag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Dice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LogRoll.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DiceService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IDiceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
   </ItemGroup>
@@ -27,9 +32,5 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
   </ItemGroup>
 </Project>

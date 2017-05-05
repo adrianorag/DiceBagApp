@@ -22246,10 +22246,10 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\Adriano\\Documents\\Project\\BagDice\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\DiceBagApp.UWP.csproj",
+      "projectUniqueName": "C:\\Users\\Adriano\\Documents\\Project\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\DiceBagApp.UWP.csproj",
       "projectName": "DiceBagApp.UWP",
-      "projectPath": "C:\\Users\\Adriano\\Documents\\Project\\BagDice\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\DiceBagApp.UWP.csproj",
-      "projectJsonPath": "C:\\Users\\Adriano\\Documents\\Project\\BagDice\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\project.json",
+      "projectPath": "C:\\Users\\Adriano\\Documents\\Project\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\DiceBagApp.UWP.csproj",
+      "projectJsonPath": "C:\\Users\\Adriano\\Documents\\Project\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\project.json",
       "projectStyle": "ProjectJson"
     },
     "dependencies": {

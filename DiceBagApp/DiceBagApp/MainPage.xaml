@@ -4,9 +4,31 @@
              xmlns:local="clr-namespace:DiceBagApp"
              x:Class="DiceBagApp.MainPage"
              Title="Dice Bag">
+    <StackLayout>
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+        <ListView ItemsSource="{Binding Bag.Dices}" ItemTapped="ListView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView ItemsSource="{Binding LogRoll}" HasUnevenRows="True" BackgroundColor="Aqua" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Date, StringFormat='{0:HH:mm:ss}'}" TextColor="Gray" />
+                            <Label Text="{Binding Description}" />
+                            <Label Text="{Binding Result}"  TextColor="Black" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+    </StackLayout>
 
 </ContentPage>
