@@ -1,6 +1,7 @@
 ﻿using DiceBagApp.Models;
 using DiceBagApp.Services;
 using DiceBagApp.ViewModels;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace DiceBagApp
@@ -17,6 +18,9 @@ namespace DiceBagApp
         {
             var dice = (sender as ListView).SelectedItem as Dice;
             (BindingContext as MainViewModel)?.RollDiceCommand.Execute(dice);
+
+            var lastItem = eListViewLogRoll.ItemsSource.Cast<object>().LastOrDefault();
+            eListViewLogRoll.ScrollTo(lastItem, ScrollToPosition.End, false);
         }
     }
 }
