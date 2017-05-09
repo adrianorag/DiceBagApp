@@ -16,8 +16,8 @@ namespace DiceBagApp
         
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var dice = (sender as ListView).SelectedItem as Dice;
-            (BindingContext as MainViewModel)?.RollDiceCommand.Execute(dice);
+            var groupDice = (sender as ListView).SelectedItem as GroupDice;
+            (BindingContext as MainViewModel)?.RollDiceCommand.Execute(groupDice);
 
             var lastItem = eListViewLogRoll.ItemsSource.Cast<object>().LastOrDefault();
             eListViewLogRoll.ScrollTo(lastItem, ScrollToPosition.End, false);

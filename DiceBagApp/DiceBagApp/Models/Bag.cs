@@ -5,6 +5,6 @@ namespace DiceBagApp.Models
     class Bag
     {
         public string Name { get; set; }
-        public List<Dice> Dices { get; set; }
+        public List<GroupDice> GroupDices { get; set; }
     }
 }

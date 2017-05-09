@@ -5,15 +5,19 @@
              x:Class="DiceBagApp.MainPage"
              Title="Dice Bag">
     <StackLayout>
-
-        <ListView ItemsSource="{Binding Bag.Dices}" ItemTapped="ListView_ItemTapped">
+        <ListView ItemsSource="{Binding GroupDices}" ItemTapped="ListView_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" />
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}" />
+                            <!--<Label Text="{Binding LastResult}" />-->
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+        
         <ListView ItemsSource="{Binding LogRoll}" x:Name="eListViewLogRoll" HasUnevenRows="True" BackgroundColor="Aqua"  >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -27,8 +31,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-
     </StackLayout>
 
 </ContentPage>

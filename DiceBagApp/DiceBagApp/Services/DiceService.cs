@@ -1,19 +1,27 @@
 ﻿using System;
 using DiceBagApp.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DiceBagApp.Services
 {
     class DiceService : IDiceService
     {
 
-        public LogRoll RollDice(Dice dice) {
+        public LogRoll RollDice(GroupDice groupDice) {
             var logRoll = new LogRoll();
-            logRoll.Dice = dice;
+            logRoll.GroupDice = groupDice;
             logRoll.Date = DateTime.Now;
 
             Random rnd = new Random();
-            logRoll.Result = rnd.Next(1, (1+logRoll.Dice.MaximumRollValue));
+            logRoll.Result = 0;
+            foreach (var dice in groupDice?.Dices)
+            {
+                dice.Result = rnd.Next(1, (1 + dice.MaximumRollValue));
+                logRoll.Result += dice.Result;
+            }
+            groupDice.LastResult = groupDice.Dices.Sum(_ => _.Result);
+
 
             WriteDescriptionRollDice(ref logRoll);
             return logRoll;
@@ -22,7 +30,15 @@ namespace DiceBagApp.Services
 
         private void WriteDescriptionRollDice(ref LogRoll logRoll )
         {
-            var description = $"( 1{logRoll.Dice.Name} )";
+            var description = "(";
+
+            foreach (var dice in logRoll.GroupDice?.Dices)
+            {
+                if (!dice.Equals(logRoll.GroupDice.Dices.First()))
+                    description += " + ";
+                description += $"{dice.Result} ";
+            }
+            description += $")";
 
             logRoll.Description = description;
         }
@@ -34,15 +50,62 @@ namespace DiceBagApp.Services
             var Bag = new Bag();
             Bag.Name = "Default";
 
-            var ListDice = new List<Dice>();
-            ListDice.Add( new Dice() { Name = "D4", MaximumRollValue=4, Modifier=0 });
-            ListDice.Add(new Dice() { Name = "D6", MaximumRollValue = 6, Modifier = 0 });
-            ListDice.Add(new Dice() { Name = "D8", MaximumRollValue = 8, Modifier = 0 });
-            ListDice.Add(new Dice() { Name = "D10", MaximumRollValue = 10, Modifier = 0 });
-            ListDice.Add(new Dice() { Name = "D12", MaximumRollValue = 12, Modifier = 0 });
-            ListDice.Add(new Dice() { Name = "D20", MaximumRollValue = 20, Modifier = 0 });
+            var ListGroupDice = new List<GroupDice>();
 
-            Bag.Dices = ListDice;
+            ListGroupDice.Add(new GroupDice() {
+                Name = "D4",
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D4", MaximumRollValue = 4 } })
+                ,LastResult =0
+                
+            });
+
+            ListGroupDice.Add(new GroupDice()
+            {
+                Name = "D6",
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D6", MaximumRollValue = 6 } })
+                ,
+                LastResult = 0
+            });
+
+            ListGroupDice.Add(new GroupDice()
+            {
+                Name = "2D6D10",
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D6", MaximumRollValue = 6 }, new Dice { Name = "D6", MaximumRollValue = 6 } , new Dice { Name = "D10", MaximumRollValue = 10 } })
+                
+            });
+
+            ListGroupDice.Add(new GroupDice()
+            {
+                Name = "D8",
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D8", MaximumRollValue = 8 } })
+                ,
+                LastResult = 0
+            });
+
+            ListGroupDice.Add(new GroupDice()
+            {
+                Name = "D10",
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D10", MaximumRollValue = 10 } })
+                ,
+                LastResult = 0
+            });
+
+            ListGroupDice.Add(new GroupDice()
+            {
+                Name = "D12",
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D12", MaximumRollValue = 12 } })
+                ,
+                LastResult = 0
+            });
+            ListGroupDice.Add(new GroupDice()
+            {
+                Name = "D20",
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D20", MaximumRollValue = 20 } })
+                ,
+                LastResult = 0
+            });
+
+            Bag.GroupDices = ListGroupDice;
             return Bag;
         }
     }

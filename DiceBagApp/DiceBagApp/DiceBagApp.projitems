@@ -17,6 +17,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Bag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Dice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GroupDice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LogRoll.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DiceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDiceService.cs" />
@@ -32,5 +33,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Helper\" />
   </ItemGroup>
 </Project>

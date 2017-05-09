@@ -15,30 +15,31 @@ namespace DiceBagApp.ViewModels
             _diceService = diceService;
 
             //firt step
-            Bag = _diceService.GetDefaultBag();
+            var bagDefault = _diceService.GetDefaultBag();
+            GroupDices = new ObservableCollection<GroupDice>(bagDefault.GroupDices);
             LogRoll = new ObservableCollection<LogRoll>();
 
+
             //Commands 
-            RollDiceCommand = new Command<Dice>(ExecuteRollDiceCommand);
+            RollDiceCommand = new Command<GroupDice>(ExecuteRollDiceCommand);
         }
 
         #region Public Data
-        public Bag Bag { get; set; }
+        public ObservableCollection<GroupDice> GroupDices { get; set; }
         public ObservableCollection<LogRoll> LogRoll { get; set; }
 
         #endregion Public Data
 
 
         #region Command
-        public Command<Dice> RollDiceCommand { get; }
+        public Command<GroupDice> RollDiceCommand { get; }
 
 
-        public void ExecuteRollDiceCommand(Dice dice)
+        public void ExecuteRollDiceCommand(GroupDice groupDice)
         {
 
-            var result = _diceService.RollDice(dice);
+            var result = _diceService.RollDice(groupDice);
             LogRoll.Add(result);
-
         }
         #endregion Command
     }

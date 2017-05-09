@@ -7,6 +7,6 @@ namespace DiceBagApp.Services
     {
         Bag GetDefaultBag();
 
-        LogRoll RollDice(Dice dice);
+        LogRoll RollDice(GroupDice dice);
     }
 }
