@@ -15,12 +15,11 @@ namespace DiceBagApp.Services
 
             Random rnd = new Random();
             logRoll.Result = 0;
-            foreach (var dice in groupDice?.Dices)
+            foreach (var diceLog in logRoll.GroupDice?.Dices)
             {
-                dice.Result = rnd.Next(1, (1 + dice.MaximumRollValue));
-                logRoll.Result += dice.Result;
+                diceLog.Result = rnd.Next(1, (1 + diceLog.MaximumRollValue));
             }
-            groupDice.LastResult = groupDice.Dices.Sum(_ => _.Result);
+            logRoll.Result = logRoll.GroupDice.Dices.Sum(_ => _.Result);
 
 
             WriteDescriptionRollDice(ref logRoll);
