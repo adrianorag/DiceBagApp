@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:DiceBagApp"
              x:Class="DiceBagApp.MainPage"
              Title="Dice Bag">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:LastResultConverter x:Key="lastResultConverter" />    
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
         <ListView ItemsSource="{Binding GroupDices}" ItemTapped="ListView_ItemTapped">
             <ListView.ItemTemplate>
@@ -11,7 +16,7 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Name}" />
-                            <!--<Label Text="{Binding LastResult}" />-->
+                            <Label Text="{Binding LastResult, Converter={StaticResource lastResultConverter} }"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

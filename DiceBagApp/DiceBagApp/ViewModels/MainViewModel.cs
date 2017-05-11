@@ -40,6 +40,11 @@ namespace DiceBagApp.ViewModels
 
             var result = _diceService.RollDice(groupDice);
             LogRoll.Add(result);
+            groupDice.LastResult = result.Result;
+
+            var i = GroupDices.IndexOf(groupDice);
+            GroupDices.RemoveAt(i);
+            GroupDices.Insert(i, groupDice);
         }
         #endregion Command
     }
