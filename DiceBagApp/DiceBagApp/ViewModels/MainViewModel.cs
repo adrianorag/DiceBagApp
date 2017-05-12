@@ -22,6 +22,7 @@ namespace DiceBagApp.ViewModels
 
             //Commands 
             RollDiceCommand = new Command<GroupDice>(ExecuteRollDiceCommand);
+            BagPageCommand = new Command(ExecuteBagPageCommand);
         }
 
         #region Public Data
@@ -33,6 +34,12 @@ namespace DiceBagApp.ViewModels
 
         #region Command
         public Command<GroupDice> RollDiceCommand { get; }
+        public Command BagPageCommand { get; }
+
+        async void ExecuteBagPageCommand()
+        {
+            await PushAsync<BagViewModel>(_diceService);
+        }
 
 
         public void ExecuteRollDiceCommand(GroupDice groupDice)

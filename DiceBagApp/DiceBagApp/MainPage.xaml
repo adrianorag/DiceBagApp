@@ -3,12 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DiceBagApp"
              x:Class="DiceBagApp.MainPage"
-             Title="Dice Bag">
+             Title="Dice Bag"
+             Icon="">
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:LastResultConverter x:Key="lastResultConverter" />    
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Create Bag"  Command="{Binding BagPageCommand}"/>
+    </ContentPage.ToolbarItems>
     <StackLayout>
         <ListView ItemsSource="{Binding GroupDices}" ItemTapped="ListView_ItemTapped">
             <ListView.ItemTemplate>
@@ -16,7 +20,7 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Name}" />
-                            <Label Text="{Binding LastResult, Converter={StaticResource lastResultConverter} }"/>
+                            <Label Text="{Binding LastResult, Converter={StaticResource lastResultConverter} }" FontAttributes="Bold" TextColor="BlueViolet"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
