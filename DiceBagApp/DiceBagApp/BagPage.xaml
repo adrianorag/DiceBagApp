@@ -6,7 +6,21 @@
 
     <StackLayout>
         <Entry Text="Name of Bag" />
-        <Button Text="Add New Dice" />
+        <Button Text="Add New Roll Dice" Command="{Binding GroupDicePageCommand}"/>
 
+        <ListView ItemsSource="{Binding GroupDice}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Entry Text="1" />
+                            <Label Text="D" />
+                            <Entry Text="4" />
+                            <Button Text="X" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </ContentPage>

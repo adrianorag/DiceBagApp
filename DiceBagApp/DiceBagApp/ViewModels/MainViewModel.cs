@@ -14,7 +14,7 @@ namespace DiceBagApp.ViewModels
         {
             _diceService = diceService;
 
-            //firt step
+            //first step
             var bagDefault = _diceService.GetDefaultBag();
             GroupDices = new ObservableCollection<GroupDice>(bagDefault.GroupDices);
             LogRoll = new ObservableCollection<LogRoll>();
