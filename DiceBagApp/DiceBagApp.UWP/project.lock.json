@@ -22242,14 +22242,14 @@
     "UAP,Version=v10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Adriano\\.nuget\\packages\\": {}
+    "C:\\Users\\adria\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\Adriano\\Documents\\Project\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\DiceBagApp.UWP.csproj",
+      "projectUniqueName": "C:\\Project\\DiceBag\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\DiceBagApp.UWP.csproj",
       "projectName": "DiceBagApp.UWP",
-      "projectPath": "C:\\Users\\Adriano\\Documents\\Project\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\DiceBagApp.UWP.csproj",
-      "projectJsonPath": "C:\\Users\\Adriano\\Documents\\Project\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\project.json",
+      "projectPath": "C:\\Project\\DiceBag\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\DiceBagApp.UWP.csproj",
+      "projectJsonPath": "C:\\Project\\DiceBag\\DiceBagApp\\DiceBagApp\\DiceBagApp.UWP\\project.json",
       "projectStyle": "ProjectJson"
     },
     "dependencies": {

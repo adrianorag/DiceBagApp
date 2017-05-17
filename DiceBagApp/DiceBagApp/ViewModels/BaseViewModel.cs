@@ -49,6 +49,25 @@ namespace DiceBagApp.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(page);
         }
 
+        public async Task PushModalAsync<TViewModel>(params object[] args) where TViewModel : BaseViewModel
+        {
+            var viewModelType = typeof(TViewModel);
+            var viewModelTypeName = viewModelType.Name;
+            var viewModelWordLength = "ViewModel".Length;
+            var viewTypeName = $"DiceBagApp.{viewModelTypeName.Substring(0, viewModelTypeName.Length - viewModelWordLength)}Page";
+            var viewType = Type.GetType(viewTypeName);
+
+            var page = Activator.CreateInstance(viewType) as Page;
+
+            var viewModel = Activator.CreateInstance(viewModelType, args);
+            if (page != null)
+            {
+                page.BindingContext = viewModel;
+            }
+
+            await Application.Current.MainPage.Navigation.PushModalAsync(page);
+        }
+
 
         public virtual Task LoadAsync()
         {

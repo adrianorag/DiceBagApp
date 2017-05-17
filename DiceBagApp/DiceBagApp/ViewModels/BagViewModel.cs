@@ -30,7 +30,7 @@ namespace DiceBagApp.ViewModels
         public Command GroupDicePageCommand { get; }
         async void ExecuteGroupDicePageCommand()
         {
-            await PushAsync<GroupDiceViewModel>(_diceService);
+            await PushModalAsync<GroupDiceViewModel>(_diceService);
         }
         #endregion Command
 
