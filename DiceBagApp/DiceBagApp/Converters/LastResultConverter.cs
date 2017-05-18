@@ -2,6 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
+//Obs: Namespace to ROOT
 namespace DiceBagApp
 {
     class LastResultConverter : IValueConverter

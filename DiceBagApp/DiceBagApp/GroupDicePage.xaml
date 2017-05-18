@@ -9,8 +9,8 @@
             <Entry Text="1"  Keyboard="Numeric"  WidthRequest="100"  BindingContext="{Binding Dice}" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
-            <Button Text="Add" />
-            <Button Text="Cancel" />
+            <Button Text="Add" Command="{Binding AddDiceCommand}" />
+            <Button Text="Cancel" Command="{Binding CancelDiceCommand}"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

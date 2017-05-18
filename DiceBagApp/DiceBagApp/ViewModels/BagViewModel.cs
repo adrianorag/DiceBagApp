@@ -1,6 +1,8 @@
-﻿using DiceBagApp.Models;
+﻿using DiceBagApp.Datas;
+using DiceBagApp.Models;
 using DiceBagApp.Services;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DiceBagApp.ViewModels
@@ -18,7 +20,28 @@ namespace DiceBagApp.ViewModels
 
             //Commands 
             GroupDicePageCommand = new Command(ExecuteGroupDicePageCommand);
+
+            var listDice = DiceTempDataBase.GetItemsAsync();
+
+
         }
+
+        #region future injection //TODO: Make injection class
+        private DiceTempDataBase _diceTempDataBase;
+
+        private DiceTempDataBase DiceTempDataBase
+        {
+            get
+            {
+
+                if (_diceTempDataBase == null)
+                    _diceTempDataBase = new DiceTempDataBase(DependencyService.Get<IFileHelper>().GetLocalFilePath("BagDiceSQLite.db3"));
+
+                return _diceTempDataBase;
+            }
+
+        }
+        #endregion future injection
 
         #region Public Data
         public ObservableCollection<GroupDice> GroupDice { get; set; }
@@ -30,7 +53,10 @@ namespace DiceBagApp.ViewModels
         public Command GroupDicePageCommand { get; }
         async void ExecuteGroupDicePageCommand()
         {
-            await PushModalAsync<GroupDiceViewModel>(_diceService);
+            await PushAsync<GroupDiceViewModel>(_diceService);
+            
+            var listDice = DiceTempDataBase.GetItemsAsync();
+
         }
         #endregion Command
 

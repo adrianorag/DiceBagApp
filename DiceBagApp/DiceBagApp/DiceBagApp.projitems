@@ -17,6 +17,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LastResultConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DiceTempDataBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GroupDicePage.xaml.cs">
       <DependentUpon>GroupDicePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -26,10 +27,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Bag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Dice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DiceTemp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\GroupDice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LogRoll.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DiceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDiceService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BagViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GroupDiceViewModel.cs" />

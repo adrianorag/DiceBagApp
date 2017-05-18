@@ -49,6 +49,12 @@ namespace DiceBagApp.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(page);
         }
 
+
+        public async Task PopAsync()
+        {
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
+
         public async Task PushModalAsync<TViewModel>(params object[] args) where TViewModel : BaseViewModel
         {
             var viewModelType = typeof(TViewModel);
@@ -68,10 +74,15 @@ namespace DiceBagApp.ViewModels
             await Application.Current.MainPage.Navigation.PushModalAsync(page);
         }
 
+        public async Task PopModalAsync()
+        {
+            await Application.Current.MainPage.Navigation.PopModalAsync();
+        }
 
         public virtual Task LoadAsync()
         {
             return Task.FromResult(0);
         }
+
     }
 }

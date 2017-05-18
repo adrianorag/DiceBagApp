@@ -18,9 +18,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" Padding="10">
                             <Label Text="{Binding Name}" />
-                            <Label Text="{Binding LastResult, Converter={StaticResource lastResultConverter} }" FontAttributes="Bold" TextColor="BlueViolet"/>
+                            <Label Text="{Binding LastResult, Converter={StaticResource lastResultConverter} }" FontAttributes="Bold" TextColor="BlueViolet" HorizontalOptions="EndAndExpand" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -31,7 +31,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal"  Padding="10">
                             <Label Text="{Binding Date, StringFormat='{0:HH:mm:ss}'}" TextColor="Gray" />
                             <Label Text="{Binding Description}" />
                             <Label Text="{Binding Result}"  TextColor="Black" />
