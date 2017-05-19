@@ -113,7 +113,7 @@ namespace DiceBagApp.ViewModels
                 if (dice.Quantity == 0 || dice.NumberFaceOfDice == 0)
                     continue;
 
-                var s = new DiceTemp() { NumberFaceOfDice = dice.NumberFaceOfDice, Quantity = dice.Quantity };
+                var s = new DiceTemp() { NumberFaceOfDice = dice.NumberFaceOfDice, Quantity = dice.Quantity, GroupDiceID= groupDice.ID };
                 s.ID = await DiceTempDataBase.SaveItemAsync(s);
             }
 

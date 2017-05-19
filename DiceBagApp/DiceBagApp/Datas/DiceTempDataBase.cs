@@ -13,7 +13,7 @@ namespace DiceBagApp.Datas
         {
             database = new SQLiteAsyncConnection(dbPath);
 
-            //resetando sempre para testes
+            //resetando para testes
             //database.DropTableAsync<DiceTemp>().Wait();
             //database.DropTableAsync<GroupDice>().Wait();
 
@@ -37,7 +37,7 @@ namespace DiceBagApp.Datas
             return database.QueryAsync<DiceTemp>($"SELECT * FROM [DiceTemp] WHERE [GroupDiceID] = {GroupDiceID}");
         }
 
-    public Task<DiceTemp> GetItemAsync(int id)
+        public Task<DiceTemp> GetItemAsync(int id)
         {
             return database.Table<DiceTemp>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
@@ -58,6 +58,16 @@ namespace DiceBagApp.Datas
         {
             return database.DeleteAsync(item);
         }
+
+        public async Task DeleteItemAsync(GroupDice groupDice)
+        {
+            var listItem = await GetItemsByGroupDice(groupDice.ID);
+            foreach (var item in listItem)
+            {
+                await this.DeleteItemAsync(item);
+            }
+        }
+
         #endregion DiceTemp
 
         #region GroupDiceTemp

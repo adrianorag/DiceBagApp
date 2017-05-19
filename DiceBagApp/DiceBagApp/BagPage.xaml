@@ -14,7 +14,7 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                             <Label Text="{Binding Name}" VerticalOptions="Center" />
-                            <Button Text="X" VerticalOptions="Center"  Clicked="Button_Clicked" />
+                            <Button Text="X" VerticalOptions="Center"  Clicked="ButtonClickedRemoveGroupDice" CommandParameter="{Binding .}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

@@ -1,4 +1,5 @@
-﻿using DiceBagApp.Services;
+﻿using DiceBagApp.Models;
+using DiceBagApp.Services;
 using DiceBagApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,9 +21,13 @@ namespace DiceBagApp
             listViewGroupDice.ItemsSource = await ((BagViewModel)BindingContext).RefreshList();
         }
 
-        private void Button_Clicked(object sender, System.EventArgs e)
+        private async void ButtonClickedRemoveGroupDice(object sender, System.EventArgs e)
         {
+            var btn= (Button)sender;
+            var groupDice = (GroupDice)btn.CommandParameter;
 
+            await((BagViewModel)BindingContext).DeleteGroupDiceAsync(groupDice);
+            listViewGroupDice.ItemsSource = await ((BagViewModel)BindingContext).RefreshList();
         }
     }
 }
