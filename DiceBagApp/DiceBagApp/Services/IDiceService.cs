@@ -8,5 +8,8 @@ namespace DiceBagApp.Services
         Bag GetDefaultBag();
 
         LogRoll RollDice(GroupDice dice);
+
+
+        string NameDefaultGroupDice(GroupDice groupDice);
     }
 }

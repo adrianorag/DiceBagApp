@@ -2,6 +2,8 @@
 using DiceBagApp.Datas;
 using DiceBagApp.Models;
 using DiceBagApp.Services;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace DiceBagApp.ViewModels
@@ -17,11 +19,13 @@ namespace DiceBagApp.ViewModels
             //first step
             _diceService = diceService;
 
-            Quantity = 1;
-            Dice = 20;
+            ListDices = new ObservableCollection<Dice>();
+            ListDices.Add(new Dice() { Quantity = 1, NumberFaceOfDice = 20 });
 
             //Command
             AddDiceCommand = new Command(ExecuteAddDiceCommand);
+            RemoveLastDiceCommand = new Command(ExecuteRemoveLastDiceCommand);
+            SaveCommand = new Command(ExecuteSaveCommand);
             CancelDiceCommand = new Command(ExecuteCancelDiceCommand);
         }
 
@@ -65,25 +69,66 @@ namespace DiceBagApp.ViewModels
             }
         }
 
+
+        public ObservableCollection<Dice> ListDices { get; set;}
+
         #endregion public data
 
 
-        #region Command
+            #region Command
         public Command AddDiceCommand { get; }
 
-        async void ExecuteAddDiceCommand()
+        void ExecuteAddDiceCommand()
         {
-            
-            var diceTemp = new DiceTemp()
-            {
-                NumberFaceOfDice = Dice,
-                Quantity = Quantity,
-            };
 
-            var id = await DiceTempDataBase.SaveItemAsync(diceTemp);
+           ListDices.Add(new Dice() { Quantity =1 });
+
+        }
+
+        public Command SaveCommand { get; }
+        async void ExecuteSaveCommand()
+        {
+
+            var groupDice = new GroupDice();
+            groupDice.Dices = new List<Dice>();
+
+            foreach (var dice in ListDices)
+            {
+                if (dice.Quantity == 0 || dice.NumberFaceOfDice == 0)
+                    continue;
+
+                groupDice.Dices.Add(new Dice()
+                {
+                    Quantity = dice.Quantity,
+                    NumberFaceOfDice = dice.NumberFaceOfDice
+                });
+            }
+            groupDice.Name = _diceService.NameDefaultGroupDice(groupDice);
+            groupDice.Modifier = 0;
+            groupDice.ID = await DiceTempDataBase.SaveGroupDiceAsync(groupDice);
+
+
+            foreach (var dice in ListDices)
+            {
+                if (dice.Quantity == 0 || dice.NumberFaceOfDice == 0)
+                    continue;
+
+                var s = new DiceTemp() { NumberFaceOfDice = dice.NumberFaceOfDice, Quantity = dice.Quantity };
+                s.ID = await DiceTempDataBase.SaveItemAsync(s);
+            }
+
             await PopModalAsync();
         }
 
+        public Command RemoveLastDiceCommand { get; }
+        void ExecuteRemoveLastDiceCommand()
+        {
+
+            if (ListDices.Count == 0)
+                return;
+
+            ListDices.RemoveAt(ListDices.Count - 1);
+        }
 
         public Command CancelDiceCommand { get; }
         async void ExecuteCancelDiceCommand()

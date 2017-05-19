@@ -17,7 +17,7 @@ namespace DiceBagApp.ViewModels
         {
             //first step
             _diceService = diceService;
-            ListDiceTemp = new ObservableCollection<DiceTemp>();
+            ListGroupDice = new ObservableCollection<GroupDice>();
 
             //Commands 
             GroupDicePageCommand = new Command(ExecuteGroupDicePageCommand);
@@ -43,14 +43,13 @@ namespace DiceBagApp.ViewModels
         #endregion future injection
 
         #region Public Data
-        public GroupDice GroupDice { get; set; }
-        public ObservableCollection<DiceTemp> ListDiceTemp { get; set; }
+        public ObservableCollection<GroupDice> ListGroupDice { get; set; }
         public Bag Bag {get; set;}
         #endregion Public Data
 
-        public Task<List<DiceTemp>> RefreshList()
+        public Task<List<GroupDice>> RefreshList()
         {
-            return DiceTempDataBase.GetItemsAsync();
+            return DiceTempDataBase.GetGroupDiceAsync();
         }
 
         #region Command

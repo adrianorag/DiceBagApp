@@ -3,13 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DiceBagApp.GroupDicePage">
     <StackLayout>
-        <StackLayout Orientation="Horizontal"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center" >
-            <Entry Keyboard="Numeric" WidthRequest="100"  Text="{Binding Quantity}"/>
-            <Label Text="D"/>
-            <Entry Keyboard="Numeric"  WidthRequest="100"  Text="{Binding Dice}" />
+        <ListView ItemsSource="{Binding ListDices}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center" >
+                            <Entry Keyboard="Numeric" WidthRequest="100"  Text="{Binding Quantity}"/>
+                            <Label Text="D"/>
+                            <Entry Keyboard="Numeric"  WidthRequest="100"  Text="{Binding NumberFaceOfDice}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+            <Button Text="Add Dice" Command="{Binding AddDiceCommand}" />
+            <Button Text="Remove Last Dice" Command="{Binding RemoveLastDiceCommand}"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
-            <Button Text="Add" Command="{Binding AddDiceCommand}" />
+            <Button Text="Complete Roll" Command="{Binding SaveCommand}" />
             <Button Text="Cancel" Command="{Binding CancelDiceCommand}"/>
         </StackLayout>
     </StackLayout>

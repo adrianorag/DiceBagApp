@@ -107,5 +107,25 @@ namespace DiceBagApp.Services
             Bag.GroupDices = ListGroupDice;
             return Bag;
         }
+
+
+
+        public string NameDefaultGroupDice(GroupDice groupDice)
+        {
+            var returnName = "";
+
+            var aux = "";
+            foreach (var dice in groupDice.Dices)
+            {
+                returnName += $"{aux}{dice.Quantity}D{dice.NumberFaceOfDice}";
+
+                aux = "+";
+            }
+
+            returnName = returnName.Trim();
+
+            return returnName;
+        }
+
     }
 }

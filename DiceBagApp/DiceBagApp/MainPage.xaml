@@ -11,7 +11,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Create Bag"  Command="{Binding BagPageCommand}"/>
+        <ToolbarItem Text="Edit Bag"  Command="{Binding BagPageCommand}"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
         <ListView ItemsSource="{Binding GroupDices}" ItemTapped="ListView_ItemTapped">

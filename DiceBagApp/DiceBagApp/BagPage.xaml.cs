@@ -17,7 +17,12 @@ namespace DiceBagApp
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            listViewXX.ItemsSource = await ((BagViewModel)BindingContext).RefreshList();
+            listViewGroupDice.ItemsSource = await ((BagViewModel)BindingContext).RefreshList();
+        }
+
+        private void Button_Clicked(object sender, System.EventArgs e)
+        {
+
         }
     }
 }
