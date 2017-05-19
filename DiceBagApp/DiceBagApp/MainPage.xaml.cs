@@ -13,7 +13,14 @@ namespace DiceBagApp
 			InitializeComponent();
             BindingContext = new MainViewModel(new DiceService());
 		}
-        
+
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            listViewGroupDice.ItemsSource = ((MainViewModel)BindingContext).RefreshListGroupDice();
+        }
+
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var groupDice = (sender as ListView).SelectedItem as GroupDice;

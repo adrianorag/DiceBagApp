@@ -58,16 +58,12 @@ namespace DiceBagApp.ViewModels
         async void ExecuteGroupDicePageCommand()
         {
             await PushModalAsync<GroupDiceViewModel>(_diceService);
-
         }
-
-
+        
         public async Task DeleteGroupDiceAsync(GroupDice groupDice)
         {
-
             await DiceTempDataBase.DeleteItemAsync(groupDice);
             await DiceTempDataBase.DeleteGroupDiceAsync(groupDice);
-
         }
         #endregion Command
 

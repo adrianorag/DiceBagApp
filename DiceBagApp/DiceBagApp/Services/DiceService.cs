@@ -15,11 +15,15 @@ namespace DiceBagApp.Services
 
             Random rnd = new Random();
             logRoll.Result = 0;
-            foreach (var diceLog in logRoll.GroupDice?.Dices)
+            foreach (var dice in logRoll.GroupDice.Dices)
             {
-                diceLog.Result = rnd.Next(1, (1 + diceLog.MaximumRollValue));
+                dice.Result = new List<int>();
+                for (int i = 0; i < dice.Quantity ; i++)
+                {
+                    dice.Result.Add(rnd.Next(1, (1 + dice.NumberFaceOfDice)));
+                }
             }
-            logRoll.Result = logRoll.GroupDice.Dices.Sum(_ => _.Result);
+            logRoll.Result = logRoll.GroupDice.Dices.Sum(_ => _.Result.Sum());
 
 
             WriteDescriptionRollDice(ref logRoll);
@@ -29,13 +33,19 @@ namespace DiceBagApp.Services
 
         private void WriteDescriptionRollDice(ref LogRoll logRoll )
         {
-            var description = "(";
+            var description = logRoll.GroupDice.Name + "(";
 
             foreach (var dice in logRoll.GroupDice?.Dices)
             {
                 if (!dice.Equals(logRoll.GroupDice.Dices.First()))
-                    description += " + ";
-                description += $"{dice.Result} ";
+                    description += "+";
+
+                var aux = "";
+                foreach (var itemResult in dice.Result)
+                {
+                    description += $"{aux}{itemResult} ";
+                    aux = "+";
+                }
             }
             description += $")";
 
@@ -53,7 +63,7 @@ namespace DiceBagApp.Services
 
             ListGroupDice.Add(new GroupDice() {
                 Name = "D4",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D4", MaximumRollValue = 4 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D4", NumberFaceOfDice = 4, Quantity=1 } })
                 ,LastResult =0
                 
             });
@@ -61,22 +71,16 @@ namespace DiceBagApp.Services
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D6",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D6", MaximumRollValue = 6 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D6", NumberFaceOfDice = 6, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
-
-            ListGroupDice.Add(new GroupDice()
-            {
-                Name = "2D6D10",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D6", MaximumRollValue = 6 }, new Dice { Name = "D6", MaximumRollValue = 6 } , new Dice { Name = "D10", MaximumRollValue = 10 } })
-                
-            });
+            
 
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D8",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D8", MaximumRollValue = 8 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D8", NumberFaceOfDice = 8, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
@@ -84,7 +88,7 @@ namespace DiceBagApp.Services
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D10",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D10", MaximumRollValue = 10 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D10", NumberFaceOfDice = 10, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
@@ -92,14 +96,14 @@ namespace DiceBagApp.Services
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D12",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D12", MaximumRollValue = 12 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D12", NumberFaceOfDice = 12, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D20",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D20", MaximumRollValue = 20 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D20", NumberFaceOfDice = 20, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
@@ -115,11 +119,13 @@ namespace DiceBagApp.Services
             var returnName = "";
 
             var aux = "";
+            var auxNumber = "";
             foreach (var dice in groupDice.Dices)
             {
-                returnName += $"{aux}{dice.Quantity}D{dice.NumberFaceOfDice}";
+                auxNumber = (dice.Quantity > 1) ? dice.Quantity.ToString() : ""; 
+                returnName += $"{aux}{auxNumber}D{dice.NumberFaceOfDice}";
 
-                aux = "+";
+                aux = " + ";
             }
 
             returnName = returnName.Trim();

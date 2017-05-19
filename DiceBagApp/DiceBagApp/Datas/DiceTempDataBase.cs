@@ -92,6 +92,27 @@ namespace DiceBagApp.Datas
             return database.Table<GroupDice>().ToListAsync();
         }
 
+        public List<GroupDice> GetGroupDice()
+        {
+            var taskGroupDice = this.GetGroupDiceAsync();
+
+            var listGroupDice = taskGroupDice.Result;
+
+            foreach (var groupDice in listGroupDice)
+            {
+                var taskItem = GetItemsByGroupDice(groupDice.ID);
+
+                groupDice.Dices = new List<Dice>();
+                foreach (var item in taskItem.Result)
+                {
+                    groupDice.Dices.Add(new Dice() { NumberFaceOfDice = item.NumberFaceOfDice, Quantity = item.Quantity });
+                }
+            }
+
+            return listGroupDice;
+        }
+
+
         #endregion GroupDiceTemp
     }
 }

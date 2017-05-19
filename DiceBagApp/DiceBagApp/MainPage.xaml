@@ -14,7 +14,7 @@
         <ToolbarItem Text="Edit Bag"  Command="{Binding BagPageCommand}"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <ListView ItemsSource="{Binding GroupDices}" ItemTapped="ListView_ItemTapped">
+        <ListView ItemsSource="{Binding GroupDices}" ItemTapped="ListView_ItemTapped" x:Name="listViewGroupDice">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -32,9 +32,9 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal"  Padding="10">
-                            <Label Text="{Binding Date, StringFormat='{0:HH:mm:ss}'}" TextColor="Gray" />
+                            <Label Text="{Binding Date, StringFormat='{0:HH:mm:ss}'}" TextColor="Gray" MinimumWidthRequest="80" />
                             <Label Text="{Binding Description}" />
-                            <Label Text="{Binding Result}"  TextColor="Black" />
+                            <Label Text="{Binding Result}"  TextColor="Black" MinimumWidthRequest="40" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

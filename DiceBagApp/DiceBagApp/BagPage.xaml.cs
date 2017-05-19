@@ -15,6 +15,7 @@ namespace DiceBagApp
             BindingContext = new BagViewModel(new DiceService());
 
         }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();

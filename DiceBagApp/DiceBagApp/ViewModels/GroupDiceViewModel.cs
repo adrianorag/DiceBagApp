@@ -103,10 +103,17 @@ namespace DiceBagApp.ViewModels
                     NumberFaceOfDice = dice.NumberFaceOfDice
                 });
             }
+
+            if (groupDice.Dices.Count == 0)
+            {
+                await PopModalAsync();
+                return;
+            }
+
             groupDice.Name = _diceService.NameDefaultGroupDice(groupDice);
             groupDice.Modifier = 0;
-            groupDice.ID = await DiceTempDataBase.SaveGroupDiceAsync(groupDice);
-
+            var taskGroup =DiceTempDataBase.SaveGroupDiceAsync(groupDice);
+            taskGroup.Wait();
 
             foreach (var dice in ListDices)
             {
