@@ -14,7 +14,7 @@ namespace DiceBagApp.Datas
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<DiceTemp>().Wait();
         }
-
+        
         public Task<List<DiceTemp>> GetItemsAsync()
         {
             return database.Table<DiceTemp>().ToListAsync();

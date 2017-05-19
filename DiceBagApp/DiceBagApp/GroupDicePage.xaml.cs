@@ -13,5 +13,6 @@ namespace DiceBagApp
 			InitializeComponent ();
             BindingContext = new GroupDiceViewModel(new DiceService());
 		}
-	}
+
+    }
 }

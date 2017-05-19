@@ -1,6 +1,7 @@
 ﻿using DiceBagApp.Datas;
 using DiceBagApp.Models;
 using DiceBagApp.Services;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -16,14 +17,12 @@ namespace DiceBagApp.ViewModels
         {
             //first step
             _diceService = diceService;
-            GroupDice = new ObservableCollection<GroupDice>();
+            ListDiceTemp = new ObservableCollection<DiceTemp>();
 
             //Commands 
             GroupDicePageCommand = new Command(ExecuteGroupDicePageCommand);
 
-            var listDice = DiceTempDataBase.GetItemsAsync();
-
-
+           
         }
 
         #region future injection //TODO: Make injection class
@@ -44,18 +43,22 @@ namespace DiceBagApp.ViewModels
         #endregion future injection
 
         #region Public Data
-        public ObservableCollection<GroupDice> GroupDice { get; set; }
+        public GroupDice GroupDice { get; set; }
+        public ObservableCollection<DiceTemp> ListDiceTemp { get; set; }
         public Bag Bag {get; set;}
         #endregion Public Data
+
+        public Task<List<DiceTemp>> RefreshList()
+        {
+            return DiceTempDataBase.GetItemsAsync();
+        }
 
         #region Command
 
         public Command GroupDicePageCommand { get; }
         async void ExecuteGroupDicePageCommand()
         {
-            await PushAsync<GroupDiceViewModel>(_diceService);
-            
-            var listDice = DiceTempDataBase.GetItemsAsync();
+            await PushModalAsync<GroupDiceViewModel>(_diceService);
 
         }
         #endregion Command

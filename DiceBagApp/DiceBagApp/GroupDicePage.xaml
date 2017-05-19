@@ -4,9 +4,9 @@
              x:Class="DiceBagApp.GroupDicePage">
     <StackLayout>
         <StackLayout Orientation="Horizontal"  VerticalOptions="CenterAndExpand" HorizontalOptions="Center" >
-            <Entry Text="1"  Keyboard="Numeric" WidthRequest="100"  BindingContext="{Binding Quantity}"/>
+            <Entry Keyboard="Numeric" WidthRequest="100"  Text="{Binding Quantity}"/>
             <Label Text="D"/>
-            <Entry Text="1"  Keyboard="Numeric"  WidthRequest="100"  BindingContext="{Binding Dice}" />
+            <Entry Keyboard="Numeric"  WidthRequest="100"  Text="{Binding Dice}" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
             <Button Text="Add" Command="{Binding AddDiceCommand}" />

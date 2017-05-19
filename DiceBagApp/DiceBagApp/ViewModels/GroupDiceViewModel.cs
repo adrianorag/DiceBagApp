@@ -81,8 +81,7 @@ namespace DiceBagApp.ViewModels
             };
 
             var id = await DiceTempDataBase.SaveItemAsync(diceTemp);
-
-            await PopAsync();
+            await PopModalAsync();
         }
 
 
@@ -90,7 +89,7 @@ namespace DiceBagApp.ViewModels
         async void ExecuteCancelDiceCommand()
         {
 
-            await PopAsync();
+            await PopModalAsync();
         }
         #endregion Command
 

@@ -1,7 +1,5 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DiceBagApp.Datas;
-using DiceBagApp.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DiceBagApp

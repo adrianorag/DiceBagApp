@@ -8,15 +8,15 @@
         <Entry Text="Name of Bag" />
         <Button Text="Add New Roll Dice" Command="{Binding GroupDicePageCommand}"/>
 
-        <ListView ItemsSource="{Binding GroupDice}">
+        <ListView ItemsSource="{Binding DiceTemp}" x:Name="listViewXX">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Entry Text="1" />
-                            <Label Text="D" />
-                            <Entry Text="4" />
-                            <Button Text="X" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Label Text="{Binding Quantity}" VerticalOptions="Center" />
+                            <Label Text="D" VerticalOptions="Center" />
+                            <Label Text="{Binding NumberFaceOfDice}"  VerticalOptions="Center" />
+                            <Button Text="X" Command="{Binding RemoveDiceCommand}" VerticalOptions="Center" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
