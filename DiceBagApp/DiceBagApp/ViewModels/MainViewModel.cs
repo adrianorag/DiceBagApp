@@ -1,8 +1,10 @@
 ﻿using DiceBagApp.Datas;
+using DiceBagApp.Helpers;
 using DiceBagApp.Models;
 using DiceBagApp.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -21,7 +23,7 @@ namespace DiceBagApp.ViewModels
             Bag = _diceService.GetDefaultBag();
              
 
-            GroupDices = new ObservableCollection<GroupDice>();
+            GroupDices = new CustomObservableCollection<GroupDice>();
             LogRoll = new ObservableCollection<LogRoll>();
 
 
@@ -32,7 +34,7 @@ namespace DiceBagApp.ViewModels
 
         #region Public Data
         public Bag Bag { get; set; }
-        public ObservableCollection<GroupDice> GroupDices { get; set; }
+        public CustomObservableCollection<GroupDice> GroupDices { get; set; }
         public ObservableCollection<LogRoll> LogRoll { get; set; }
 
         #endregion Public Data
@@ -54,15 +56,17 @@ namespace DiceBagApp.ViewModels
         }
         #endregion future injection
 
-        public List<GroupDice> RefreshListGroupDice()
+        public void RefreshListGroupDice()
         {
             var listGroupDice = DiceTempDataBase.GetGroupDice();
             if (listGroupDice == null || listGroupDice.Count == 0)
                 listGroupDice = this.Bag.GroupDices;
 
-            GroupDices = new ObservableCollection<GroupDice>(listGroupDice);
-
-            return listGroupDice;
+            GroupDices.Clear();
+            foreach (var item in listGroupDice)
+            {
+                GroupDices.Add(item);
+            }
         }
 
         #region Command
@@ -82,14 +86,8 @@ namespace DiceBagApp.ViewModels
             LogRoll.Add(result);
             groupDice.LastResult = result.Result;
 
-            OnPropertyChanged(nameof(groupDice.LastResult));
-
-            /*var i = GroupDices.IndexOf(groupDice);
-            if(i> 0)
-            {
-                GroupDices.RemoveAt(i);
-                GroupDices.Insert(i, groupDice);
-            }*/
+            
+            GroupDices.ReportItemChange(groupDice);
         }
         #endregion Command
     }

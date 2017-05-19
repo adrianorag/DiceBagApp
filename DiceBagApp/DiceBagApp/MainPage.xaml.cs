@@ -18,7 +18,7 @@ namespace DiceBagApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            listViewGroupDice.ItemsSource = ((MainViewModel)BindingContext).RefreshListGroupDice();
+            ((MainViewModel)BindingContext).RefreshListGroupDice();
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

@@ -27,7 +27,7 @@
             </ListView.ItemTemplate>
         </ListView>
         
-        <ListView ItemsSource="{Binding LogRoll}" x:Name="eListViewLogRoll" HasUnevenRows="True" BackgroundColor="Aqua"  >
+        <ListView ItemsSource="{Binding LogRoll}" x:Name="eListViewLogRoll" HasUnevenRows="True" BackgroundColor="#CCC"  >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
