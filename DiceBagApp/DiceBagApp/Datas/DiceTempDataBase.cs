@@ -13,9 +13,16 @@ namespace DiceBagApp.Datas
         {
             database = new SQLiteAsyncConnection(dbPath);
 
+            database.CreateTableAsync<DiceTemp>().Wait();
+            database.CreateTableAsync<GroupDice>().Wait();
+        }
+
+
+        public void ResetDataBase()
+        {
             //resetando para testes
-            //database.DropTableAsync<DiceTemp>().Wait();
-            //database.DropTableAsync<GroupDice>().Wait();
+            database.DropTableAsync<DiceTemp>().Wait();
+            database.DropTableAsync<GroupDice>().Wait();
 
             database.CreateTableAsync<DiceTemp>().Wait();
             database.CreateTableAsync<GroupDice>().Wait();
@@ -27,11 +34,7 @@ namespace DiceBagApp.Datas
         {
             return database.Table<DiceTemp>().ToListAsync();
         }
-
-        /*public Task<List<DiceTemp>> GetItemsNotDoneAsync()
-        {
-            return database.QueryAsync<DiceTemp>("SELECT * FROM [DiceTemp] WHERE [Done] = 0");
-        }*/
+        
         public Task<List<DiceTemp>> GetItemsByGroupDice(int GroupDiceID)
         {
             return database.QueryAsync<DiceTemp>($"SELECT * FROM [DiceTemp] WHERE [GroupDiceID] = {GroupDiceID}");
@@ -71,6 +74,22 @@ namespace DiceBagApp.Datas
         #endregion DiceTemp
 
         #region GroupDiceTemp
+
+        public async void  SaveGroupDiceAndItemAsync(GroupDice groupDice)
+        {
+            var taskGroupDice = SaveGroupDiceAsync(groupDice);
+            taskGroupDice.Wait();
+
+            foreach (var dice in groupDice.Dices)
+            {
+                if (dice.Quantity == 0 || dice.NumberFaceOfDice == 0)
+                    continue;
+
+                var s = new DiceTemp() { NumberFaceOfDice = dice.NumberFaceOfDice, Quantity = dice.Quantity, GroupDiceID = groupDice.ID };
+                await SaveItemAsync(s);
+            }
+        }
+
         public Task<int> SaveGroupDiceAsync(GroupDice item)
         {
             if (item.ID != 0)
@@ -111,8 +130,18 @@ namespace DiceBagApp.Datas
 
             return listGroupDice;
         }
-
-
         #endregion GroupDiceTemp
+
+
+        #region Bag
+        public void SaveBag(Bag bag)
+        {
+            foreach (var groupDices in bag.GroupDices)
+            {
+                SaveGroupDiceAndItemAsync(groupDices);
+            }
+        }
+
+        #endregion Bag
     }
 }

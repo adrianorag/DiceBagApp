@@ -20,8 +20,9 @@ namespace DiceBagApp.ViewModels
             _diceService = diceService;
 
             //first step
-            Bag = _diceService.GetDefaultBag();
-             
+            ///Bag = _diceService.GetDefaultBag();
+            IsLoading = false;
+
 
             GroupDices = new CustomObservableCollection<GroupDice>();
             LogRoll = new ObservableCollection<LogRoll>();
@@ -30,12 +31,24 @@ namespace DiceBagApp.ViewModels
             //Commands 
             RollDiceCommand = new Command<GroupDice>(ExecuteRollDiceCommand);
             BagPageCommand = new Command(ExecuteBagPageCommand);
+            ResetBagCommand = new Command(ExecuteResetBagCommand);
+
+            
         }
 
         #region Public Data
         public Bag Bag { get; set; }
         public CustomObservableCollection<GroupDice> GroupDices { get; set; }
         public ObservableCollection<LogRoll> LogRoll { get; set; }
+
+        private bool _isLoading;
+
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
+        }
+
 
         #endregion Public Data
 
@@ -59,8 +72,9 @@ namespace DiceBagApp.ViewModels
         public void RefreshListGroupDice()
         {
             var listGroupDice = DiceTempDataBase.GetGroupDice();
+            //First Login in app
             if (listGroupDice == null || listGroupDice.Count == 0)
-                listGroupDice = this.Bag.GroupDices;
+                ExecuteResetBagCommand();
 
             GroupDices.Clear();
             foreach (var item in listGroupDice)
@@ -70,7 +84,7 @@ namespace DiceBagApp.ViewModels
         }
 
         #region Command
-        public Command<GroupDice> RollDiceCommand { get; }
+        
         public Command BagPageCommand { get; }
 
         async void ExecuteBagPageCommand()
@@ -78,7 +92,26 @@ namespace DiceBagApp.ViewModels
             await PushAsync<BagViewModel>(_diceService);
         }
 
+        public Command ResetBagCommand { get; }
 
+        public async void ExecuteResetBagCommand()
+        {
+            IsLoading = true;
+            GroupDices.Clear();
+            await Task.Run(() =>
+                {
+                 DiceTempDataBase.ResetDataBase();
+                 Bag = _diceService.GetDefaultBag();
+                 DiceTempDataBase.SaveBag(Bag);
+                 Task.WaitAll();
+                 RefreshListGroupDice();
+                 IsLoading = false;
+                }
+            );
+        }
+
+
+        public Command<GroupDice> RollDiceCommand { get; }
         public void ExecuteRollDiceCommand(GroupDice groupDice)
         {
 

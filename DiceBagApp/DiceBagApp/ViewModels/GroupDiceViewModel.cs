@@ -112,17 +112,7 @@ namespace DiceBagApp.ViewModels
 
             groupDice.Name = _diceService.NameDefaultGroupDice(groupDice);
             groupDice.Modifier = 0;
-            var taskGroup =DiceTempDataBase.SaveGroupDiceAsync(groupDice);
-            taskGroup.Wait();
-
-            foreach (var dice in ListDices)
-            {
-                if (dice.Quantity == 0 || dice.NumberFaceOfDice == 0)
-                    continue;
-
-                var s = new DiceTemp() { NumberFaceOfDice = dice.NumberFaceOfDice, Quantity = dice.Quantity, GroupDiceID= groupDice.ID };
-                s.ID = await DiceTempDataBase.SaveItemAsync(s);
-            }
+            DiceTempDataBase.SaveGroupDiceAndItemAsync(groupDice);
 
             await PopModalAsync();
         }

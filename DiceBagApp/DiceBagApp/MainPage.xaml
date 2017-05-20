@@ -11,9 +11,13 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit Bag"  Command="{Binding BagPageCommand}"/>
+        <ToolbarItem Text="Edit Bag" Command="{Binding BagPageCommand}" Order="Default" Priority="0" />
+        <ToolbarItem Text="Reset Bag" Command="{Binding ResetBagCommand}" Order="Secondary" Priority="1" />
     </ContentPage.ToolbarItems>
     <StackLayout>
+        <ActivityIndicator Color="Red" IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />
+        
+
         <ListView ItemsSource="{Binding GroupDices}" ItemTapped="ListView_ItemTapped" x:Name="listViewGroupDice">
             <ListView.ItemTemplate>
                 <DataTemplate>
