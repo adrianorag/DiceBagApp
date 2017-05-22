@@ -32,8 +32,7 @@ namespace DiceBagApp.ViewModels
             RollDiceCommand = new Command<GroupDice>(ExecuteRollDiceCommand);
             BagPageCommand = new Command(ExecuteBagPageCommand);
             ResetBagCommand = new Command(ExecuteResetBagCommand);
-
-            
+            ClearLogCommand = new Command(ExecuteClearLogCommand);
         }
 
         #region Public Data
@@ -69,28 +68,39 @@ namespace DiceBagApp.ViewModels
         }
         #endregion future injection
 
-        public void RefreshListGroupDice()
+        public async void RefreshListGroupDice()
         {
-            var listGroupDice = DiceTempDataBase.GetGroupDice();
-            //First Login in app
-            if (listGroupDice == null || listGroupDice.Count == 0)
-                ExecuteResetBagCommand();
-
-            GroupDices.Clear();
-            foreach (var item in listGroupDice)
+            await Task.Run(() =>
             {
-                GroupDices.Add(item);
-            }
+                var listGroupDice = DiceTempDataBase.GetGroupDice();
+                //First Login in app
+                if (listGroupDice == null || listGroupDice.Count == 0)
+                    ExecuteResetBagCommand();
+
+                GroupDices.Clear();
+                foreach (var item in listGroupDice)
+                {
+                    GroupDices.Add(item);
+                }
+            });
         }
 
         #region Command
-        
+
         public Command BagPageCommand { get; }
 
         async void ExecuteBagPageCommand()
         {
             await PushAsync<BagViewModel>(_diceService);
         }
+
+
+        public Command ClearLogCommand { get; }
+        public void ExecuteClearLogCommand()
+        {
+            LogRoll.Clear();
+        }
+
 
         public Command ResetBagCommand { get; }
 
@@ -100,12 +110,12 @@ namespace DiceBagApp.ViewModels
             GroupDices.Clear();
             await Task.Run(() =>
                 {
-                 DiceTempDataBase.ResetDataBase();
-                 Bag = _diceService.GetDefaultBag();
-                 DiceTempDataBase.SaveBag(Bag);
-                 Task.WaitAll();
-                 RefreshListGroupDice();
-                 IsLoading = false;
+                    DiceTempDataBase.ResetDataBase();
+                    Bag = _diceService.GetDefaultBag();
+                    DiceTempDataBase.SaveBag(Bag);
+                    Task.WaitAll();
+                    RefreshListGroupDice();
+                    IsLoading = false;
                 }
             );
         }
@@ -119,7 +129,7 @@ namespace DiceBagApp.ViewModels
             LogRoll.Add(result);
             groupDice.LastResult = result.Result;
 
-            
+
             GroupDices.ReportItemChange(groupDice);
         }
         #endregion Command
