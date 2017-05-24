@@ -2,9 +2,7 @@
 using DiceBagApp.Helpers;
 using DiceBagApp.Models;
 using DiceBagApp.Services;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
