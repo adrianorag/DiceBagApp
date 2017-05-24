@@ -28,7 +28,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Bag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Dice.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\DiceTemp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\GroupDice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LogRoll.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DiceService.cs" />

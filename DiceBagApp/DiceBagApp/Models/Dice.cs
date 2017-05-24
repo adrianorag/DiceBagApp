@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using SQLite;
+using System.Collections.Generic;
 
 namespace DiceBagApp.Models
 {
     class Dice
     {
-
-        public string Name { get; set; }
-        public int MaximumRollValue { get; set; }
-        //public int Result { get; set; }
-
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public int NumberFaceOfDice { get; set; }
         public int Quantity { get; set; }
+        [Ignore]
         public List<int> Result { get; set; }
+        //FK
+        public int GroupDiceID { get; set; }
     }
 }

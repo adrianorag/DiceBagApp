@@ -63,7 +63,7 @@ namespace DiceBagApp.Services
 
             ListGroupDice.Add(new GroupDice() {
                 Name = "D4",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D4", NumberFaceOfDice = 4, Quantity=1 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { NumberFaceOfDice = 4, Quantity=1 } })
                 ,LastResult =0
                 
             });
@@ -71,7 +71,7 @@ namespace DiceBagApp.Services
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D6",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D6", NumberFaceOfDice = 6, Quantity = 1 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { NumberFaceOfDice = 6, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
@@ -80,7 +80,7 @@ namespace DiceBagApp.Services
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D8",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D8", NumberFaceOfDice = 8, Quantity = 1 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { NumberFaceOfDice = 8, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
@@ -88,7 +88,7 @@ namespace DiceBagApp.Services
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D10",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D10", NumberFaceOfDice = 10, Quantity = 1 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { NumberFaceOfDice = 10, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
@@ -96,14 +96,14 @@ namespace DiceBagApp.Services
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D12",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D12", NumberFaceOfDice = 12, Quantity = 1 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { NumberFaceOfDice = 12, Quantity = 1 } })
                 ,
                 LastResult = 0
             });
             ListGroupDice.Add(new GroupDice()
             {
                 Name = "D20",
-                Dices = new List<Dice>(new Dice[] { new Dice { Name = "D20", NumberFaceOfDice = 20, Quantity = 1 } })
+                Dices = new List<Dice>(new Dice[] { new Dice { NumberFaceOfDice = 20, Quantity = 1 } })
                 ,
                 LastResult = 0
             });

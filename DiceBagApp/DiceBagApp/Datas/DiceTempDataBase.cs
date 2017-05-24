@@ -12,40 +12,49 @@ namespace DiceBagApp.Datas
         public DiceTempDataBase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
-
-            database.CreateTableAsync<DiceTemp>().Wait();
-            database.CreateTableAsync<GroupDice>().Wait();
+            CreateAllBase();
         }
 
 
         public void ResetDataBase()
         {
-            //resetando para testes
-            database.DropTableAsync<DiceTemp>().Wait();
-            database.DropTableAsync<GroupDice>().Wait();
-
-            database.CreateTableAsync<DiceTemp>().Wait();
-            database.CreateTableAsync<GroupDice>().Wait();
+            DropAllDatabe();
+            CreateAllBase();
         }
 
-        #region DiceTemp
-
-        public Task<List<DiceTemp>> GetItemsAsync()
+        private void CreateAllBase()
         {
-            return database.Table<DiceTemp>().ToListAsync();
+
+            database.CreateTableAsync<Dice>().Wait();
+            database.CreateTableAsync<GroupDice>().Wait();
+            database.CreateTableAsync<Bag>().Wait();
+        }
+
+        private void DropAllDatabe()
+        {
+            database.DropTableAsync<Dice>().Wait();
+            database.DropTableAsync<GroupDice>().Wait();
+            database.DropTableAsync<Bag>().Wait();
+        }
+
+        #region Dice
+
+        public Task<List<Dice>> GetDiceAsync()
+        {
+            return database.Table<Dice>().ToListAsync();
         }
         
-        public Task<List<DiceTemp>> GetItemsByGroupDice(int GroupDiceID)
+        public Task<List<Dice>> GetDiceByGroupDice(int GroupDiceID)
         {
-            return database.QueryAsync<DiceTemp>($"SELECT * FROM [DiceTemp] WHERE [GroupDiceID] = {GroupDiceID}");
+            return database.QueryAsync<Dice>($"SELECT * FROM [{nameof(Dice)}] WHERE [GroupDiceID] = {GroupDiceID}");
         }
 
-        public Task<DiceTemp> GetItemAsync(int id)
+        public Task<Dice> GetDiceAsync(int id)
         {
-            return database.Table<DiceTemp>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return database.Table<Dice>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(DiceTemp item)
+        public Task<int> SaveDiceAsync(Dice item)
         {
             if (item.ID != 0)
             {
@@ -57,23 +66,23 @@ namespace DiceBagApp.Datas
             }
         }
 
-        public Task<int> DeleteItemAsync(DiceTemp item)
+        public Task<int> DeleteItemAsync(Dice item)
         {
             return database.DeleteAsync(item);
         }
 
         public async Task DeleteItemAsync(GroupDice groupDice)
         {
-            var listItem = await GetItemsByGroupDice(groupDice.ID);
+            var listItem = await GetDiceByGroupDice(groupDice.ID);
             foreach (var item in listItem)
             {
                 await this.DeleteItemAsync(item);
             }
         }
 
-        #endregion DiceTemp
+        #endregion Dice
 
-        #region GroupDiceTemp
+        #region GroupDice
 
         public async void  SaveGroupDiceAndItemAsync(GroupDice groupDice)
         {
@@ -85,8 +94,8 @@ namespace DiceBagApp.Datas
                 if (dice.Quantity == 0 || dice.NumberFaceOfDice == 0)
                     continue;
 
-                var s = new DiceTemp() { NumberFaceOfDice = dice.NumberFaceOfDice, Quantity = dice.Quantity, GroupDiceID = groupDice.ID };
-                await SaveItemAsync(s);
+                dice.GroupDiceID = groupDice.ID;
+                await SaveDiceAsync(dice);
             }
         }
 
@@ -101,6 +110,7 @@ namespace DiceBagApp.Datas
                 return database.InsertAsync(item);
             }
         }
+
         public Task<int> DeleteGroupDiceAsync(GroupDice item)
         {
             return database.DeleteAsync(item);
@@ -119,18 +129,16 @@ namespace DiceBagApp.Datas
 
             foreach (var groupDice in listGroupDice)
             {
-                var taskItem = GetItemsByGroupDice(groupDice.ID);
+                var taskItem = GetDiceByGroupDice(groupDice.ID);
 
-                groupDice.Dices = new List<Dice>();
-                foreach (var item in taskItem.Result)
-                {
-                    groupDice.Dices.Add(new Dice() { NumberFaceOfDice = item.NumberFaceOfDice, Quantity = item.Quantity });
-                }
+                taskItem.Wait();
+
+                groupDice.Dices = taskItem.Result;
             }
 
             return listGroupDice;
         }
-        #endregion GroupDiceTemp
+        #endregion GroupDice
 
 
         #region Bag
@@ -139,6 +147,28 @@ namespace DiceBagApp.Datas
             foreach (var groupDices in bag.GroupDices)
             {
                 SaveGroupDiceAndItemAsync(groupDices);
+            }
+        }
+
+        public Task<List<Bag>> GetBagAsync()
+        {
+            return database.Table<Bag>().ToListAsync();
+        }
+
+        public Task<Bag> GetBagAsync(int id)
+        {
+            return database.Table<Bag>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+
+        public Task<int> SaveBagAsync(Bag item)
+        {
+            if (item.ID != 0)
+            {
+                return database.UpdateAsync(item);
+            }
+            else
+            {
+                return database.InsertAsync(item);
             }
         }
 

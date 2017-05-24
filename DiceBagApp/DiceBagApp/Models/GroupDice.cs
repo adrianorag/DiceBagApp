@@ -7,6 +7,8 @@ namespace DiceBagApp.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
+        //FK
+        public int BagID { get; set; }
         public string Name { get; set; }
         public int Modifier { get; set; }
         [Ignore]
