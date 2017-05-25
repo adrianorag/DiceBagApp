@@ -8,12 +8,12 @@ using Xamarin.Forms;
 
 namespace DiceBagApp.ViewModels
 {
-    class MainViewModel : BaseViewModel
+    class RoomViewModel : BaseViewModel
     {
         //services
         private IDiceService _diceService { get; }
 
-        public MainViewModel(IDiceService diceService)
+        public RoomViewModel(IDiceService diceService)
         {
             _diceService = diceService;
 

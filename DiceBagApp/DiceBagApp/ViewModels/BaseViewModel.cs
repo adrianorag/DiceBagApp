@@ -29,7 +29,7 @@ namespace DiceBagApp.ViewModels
             return true;
         }
 
-        //Navegacao de paginas
+        #region Navegation
         public async Task PushAsync<TViewModel>(params object[] args) where TViewModel : BaseViewModel
         {
             var viewModelType = typeof(TViewModel);
@@ -46,13 +46,14 @@ namespace DiceBagApp.ViewModels
                 page.BindingContext = viewModel;
             }
 
-            await Application.Current.MainPage.Navigation.PushAsync(page);
+            App.MasterDetail.IsPresented = false;
+            await App.MasterDetail.Detail.Navigation.PushAsync(page);
         }
 
 
         public async Task PopAsync()
         {
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.MasterDetail.Detail.Navigation.PopAsync();
         }
 
         public async Task PushModalAsync<TViewModel>(params object[] args) where TViewModel : BaseViewModel
@@ -71,18 +72,21 @@ namespace DiceBagApp.ViewModels
                 page.BindingContext = viewModel;
             }
 
-            await Application.Current.MainPage.Navigation.PushModalAsync(page);
+            App.MasterDetail.IsPresented = false;
+            await App.MasterDetail.Detail.Navigation.PushModalAsync(page);
         }
 
         public async Task PopModalAsync()
         {
-            await Application.Current.MainPage.Navigation.PopModalAsync();
+            await App.MasterDetail.Detail.Navigation.PopModalAsync();
         }
 
         public virtual Task LoadAsync()
         {
             return Task.FromResult(0);
         }
+
+        #endregion Navegation
 
     }
 }

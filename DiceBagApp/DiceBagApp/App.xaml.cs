@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -7,14 +8,13 @@ namespace DiceBagApp
     public partial class App : Application
 	{
 
+        public static MasterDetailPage MasterDetail { get; set; }
+        
         public App ()
 		{
 			InitializeComponent();
-
-			MainPage = new NavigationPage(new MainPage());
+            MainPage = new MainPage();
         }
-
-
 
         protected override void OnStart ()
 		{
@@ -30,5 +30,5 @@ namespace DiceBagApp
 		{
 			// Handle when your app resumes
 		}
-	}
+    }
 }
