@@ -1,4 +1,5 @@
-﻿using DiceBagApp.Models;
+﻿using DiceBagApp.Datas;
+using DiceBagApp.Models;
 using DiceBagApp.Services;
 using DiceBagApp.ViewModels;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace DiceBagApp
 		public RoomPage()
 		{
 			InitializeComponent ();
-            BindingContext = new RoomViewModel(new DiceService());
+            BindingContext = new RoomViewModel(new DiceService(), DiceDataBase);
         }
 
         protected override void OnAppearing()
@@ -30,5 +31,24 @@ namespace DiceBagApp
             var lastItem = eListViewLogRoll.ItemsSource.Cast<object>().LastOrDefault();
             eListViewLogRoll.ScrollTo(lastItem, ScrollToPosition.End, false);
         }
+
+
+
+        #region future injection //TODO: Make injection class
+        private DiceDataBase _diceDataBase;
+
+        private DiceDataBase DiceDataBase
+        {
+            get
+            {
+                if (_diceDataBase == null)
+                    _diceDataBase = new DiceDataBase(DependencyService.Get<IFileHelper>().GetLocalFilePath("BagDiceSQLite.db3"));
+
+                return _diceDataBase;
+            }
+
+        }
+        #endregion future injection
+
     }
 }

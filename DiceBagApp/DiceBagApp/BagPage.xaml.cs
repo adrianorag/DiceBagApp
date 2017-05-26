@@ -1,4 +1,5 @@
-﻿using DiceBagApp.Models;
+﻿using DiceBagApp.Datas;
+using DiceBagApp.Models;
 using DiceBagApp.Services;
 using DiceBagApp.ViewModels;
 using Xamarin.Forms;
@@ -12,7 +13,7 @@ namespace DiceBagApp
         public BagPage()
         {
             InitializeComponent();
-            BindingContext = new BagViewModel(new DiceService());
+            BindingContext = new BagViewModel(new DiceService(), DiceDataBase);
 
         }
 
@@ -30,5 +31,21 @@ namespace DiceBagApp
             await((BagViewModel)BindingContext).DeleteGroupDiceAsync(groupDice);
             listViewGroupDice.ItemsSource = await ((BagViewModel)BindingContext).RefreshList();
         }
+
+        #region future injection //TODO: Make injection class
+        private DiceDataBase _diceDataBase;
+
+        private DiceDataBase DiceDataBase
+        {
+            get
+            {
+                if (_diceDataBase == null)
+                    _diceDataBase = new DiceDataBase(DependencyService.Get<IFileHelper>().GetLocalFilePath("BagDiceSQLite.db3"));
+
+                return _diceDataBase;
+            }
+
+        }
+        #endregion future injection
     }
 }

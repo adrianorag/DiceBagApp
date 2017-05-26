@@ -10,14 +10,16 @@ namespace DiceBagApp.ViewModels
 {
     class GroupDiceViewModel : BaseViewModel
     {
-
+        
         //services
-        private IDiceService _diceService;
+        private IDiceService _diceService { get; }
+        private IDiceDataBase _diceDataBase { get; }
 
-        public GroupDiceViewModel(IDiceService diceService) {
-
+        public GroupDiceViewModel(IDiceService diceService, IDiceDataBase diceDataBase)
+        {
             //first step
             _diceService = diceService;
+            _diceDataBase = diceDataBase;
 
             ListDices = new ObservableCollection<Dice>();
             ListDices.Add(new Dice() { Quantity = 1, NumberFaceOfDice = 20 });
@@ -28,24 +30,6 @@ namespace DiceBagApp.ViewModels
             SaveCommand = new Command(ExecuteSaveCommand);
             CancelDiceCommand = new Command(ExecuteCancelDiceCommand);
         }
-
-
-        #region future injection //TODO: Make injection class
-        private DiceTempDataBase _diceTempDataBase;
-
-        private DiceTempDataBase DiceTempDataBase
-        {
-            get
-            {
-
-                if (_diceTempDataBase == null)
-                    _diceTempDataBase = new DiceTempDataBase(DependencyService.Get<IFileHelper>().GetLocalFilePath("BagDiceSQLite.db3"));
-
-                return _diceTempDataBase;
-            }
-
-        }
-        #endregion future injection
 
         #region public data
         private int _quantity;
@@ -112,7 +96,7 @@ namespace DiceBagApp.ViewModels
 
             groupDice.Name = _diceService.NameDefaultGroupDice(groupDice);
             groupDice.Modifier = 0;
-            DiceTempDataBase.SaveGroupDiceAndItemAsync(groupDice);
+            _diceDataBase.SaveGroupDiceAndItemAsync(groupDice);
 
             await PopModalAsync();
         }

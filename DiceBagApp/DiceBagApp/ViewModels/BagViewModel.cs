@@ -11,12 +11,15 @@ namespace DiceBagApp.ViewModels
     class BagViewModel : BaseViewModel
     {
         //services
-        private IDiceService _diceService;
+        private IDiceService _diceService { get; }
+        private IDiceDataBase _diceDataBase { get; }
 
-        public BagViewModel(IDiceService diceService)
+        public BagViewModel(IDiceService diceService, IDiceDataBase diceDataBase)
         {
             //first step
             _diceService = diceService;
+            _diceDataBase = diceDataBase;
+            
             ListGroupDice = new ObservableCollection<GroupDice>();
 
             //Commands 
@@ -25,23 +28,6 @@ namespace DiceBagApp.ViewModels
            
         }
 
-        #region future injection //TODO: Make injection class
-        private DiceTempDataBase _diceTempDataBase;
-
-        private DiceTempDataBase DiceTempDataBase
-        {
-            get
-            {
-
-                if (_diceTempDataBase == null)
-                    _diceTempDataBase = new DiceTempDataBase(DependencyService.Get<IFileHelper>().GetLocalFilePath("BagDiceSQLite.db3"));
-
-                return _diceTempDataBase;
-            }
-
-        }
-        #endregion future injection
-
         #region Public Data
         public ObservableCollection<GroupDice> ListGroupDice { get; set; }
         public Bag Bag {get; set;}
@@ -49,7 +35,7 @@ namespace DiceBagApp.ViewModels
 
         public Task<List<GroupDice>> RefreshList()
         {
-            return DiceTempDataBase.GetGroupDiceAsync();
+            return _diceDataBase.GetGroupDiceAsync();
         }
 
         #region Command
@@ -57,13 +43,13 @@ namespace DiceBagApp.ViewModels
         public Command GroupDicePageCommand { get; }
         async void ExecuteGroupDicePageCommand()
         {
-            await PushModalAsync<GroupDiceViewModel>(_diceService);
+            await PushModalAsync<GroupDiceViewModel>(_diceService, _diceDataBase);
         }
         
         public async Task DeleteGroupDiceAsync(GroupDice groupDice)
         {
-            await DiceTempDataBase.DeleteItemAsync(groupDice);
-            await DiceTempDataBase.DeleteGroupDiceAsync(groupDice);
+            await _diceDataBase.DeleteItemAsync(groupDice);
+            await _diceDataBase.DeleteGroupDiceAsync(groupDice);
         }
         #endregion Command
 

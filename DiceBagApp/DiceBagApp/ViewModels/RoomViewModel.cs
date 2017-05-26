@@ -12,13 +12,13 @@ namespace DiceBagApp.ViewModels
     {
         //services
         private IDiceService _diceService { get; }
+        private IDiceDataBase _diceDataBase { get; }
 
-        public RoomViewModel(IDiceService diceService)
+        public RoomViewModel(IDiceService diceService, IDiceDataBase diceDataBase)
         {
             _diceService = diceService;
+            _diceDataBase = diceDataBase;
 
-            //first step
-            ///Bag = _diceService.GetDefaultBag();
             IsLoading = false;
 
 
@@ -48,29 +48,12 @@ namespace DiceBagApp.ViewModels
 
 
         #endregion Public Data
-
-
-        #region future injection //TODO: Make injection class
-        private DiceTempDataBase _diceTempDataBase;
-
-        private DiceTempDataBase DiceTempDataBase
-        {
-            get
-            {
-                if (_diceTempDataBase == null)
-                    _diceTempDataBase = new DiceTempDataBase(DependencyService.Get<IFileHelper>().GetLocalFilePath("BagDiceSQLite.db3"));
-
-                return _diceTempDataBase;
-            }
-
-        }
-        #endregion future injection
-
+        
         public async void RefreshListGroupDice()
         {
             await Task.Run(() =>
             {
-                var listGroupDice = DiceTempDataBase.GetGroupDice();
+                var listGroupDice = _diceDataBase.GetGroupDice();
                 //First Login in app
                 if (listGroupDice == null || listGroupDice.Count == 0)
                     ExecuteResetBagCommand();
@@ -89,7 +72,7 @@ namespace DiceBagApp.ViewModels
 
         async void ExecuteBagPageCommand()
         {
-            await PushAsync<BagViewModel>(_diceService);
+            await PushAsync<BagViewModel>(_diceService, _diceDataBase);
         }
 
 
@@ -108,9 +91,9 @@ namespace DiceBagApp.ViewModels
             GroupDices.Clear();
             await Task.Run(() =>
                 {
-                    DiceTempDataBase.ResetDataBase();
+                    _diceDataBase.ResetDataBase();
                     Bag = _diceService.GetDefaultBag();
-                    DiceTempDataBase.SaveBag(Bag);
+                    _diceDataBase.SaveBag(Bag);
                     Task.WaitAll();
                     RefreshListGroupDice();
                     IsLoading = false;

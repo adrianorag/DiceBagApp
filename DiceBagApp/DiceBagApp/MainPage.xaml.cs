@@ -11,6 +11,6 @@ namespace DiceBagApp
             this.Detail = new NavigationPage(new RoomPage());
             App.MasterDetail = this;
         }
-        
+
     }
 }

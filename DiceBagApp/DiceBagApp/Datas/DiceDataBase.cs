@@ -5,11 +5,11 @@ using SQLite;
 
 namespace DiceBagApp.Datas
 {
-    class DiceTempDataBase
+    class DiceDataBase : IDiceDataBase
     {
         readonly SQLiteAsyncConnection database;
 
-        public DiceTempDataBase(string dbPath)
+        public DiceDataBase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
             CreateAllBase();
