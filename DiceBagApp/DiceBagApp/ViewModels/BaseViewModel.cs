@@ -48,8 +48,13 @@ namespace DiceBagApp.ViewModels
 
             await App.MasterDetail.Detail.Navigation.PopToRootAsync(false);
             App.MasterDetail.IsPresented = false;
-            App.MasterDetail.Detail = new NavigationPage(new RoomPage());
-             
+            App.MasterDetail.Detail = new NavigationPage(page);
+        }
+
+
+        public void RefreshMasterPage()
+        {
+            (App.MasterDetail.Master.BindingContext as MasterViewModel).RefreshListBag();
         }
 
 

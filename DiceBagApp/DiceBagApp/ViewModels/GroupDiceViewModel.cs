@@ -15,11 +15,12 @@ namespace DiceBagApp.ViewModels
         private IDiceService _diceService { get; }
         private IDiceDataBase _diceDataBase { get; }
 
-        public GroupDiceViewModel(IDiceService diceService, IDiceDataBase diceDataBase)
+        public GroupDiceViewModel(IDiceService diceService, IDiceDataBase diceDataBase, Bag bag)
         {
             //first step
             _diceService = diceService;
             _diceDataBase = diceDataBase;
+            Bag = bag;
 
             ListDices = new ObservableCollection<Dice>();
             ListDices.Add(new Dice() { Quantity = 1, NumberFaceOfDice = 20 });
@@ -32,6 +33,8 @@ namespace DiceBagApp.ViewModels
         }
 
         #region public data
+        public Bag Bag { get; set; }
+
         private int _quantity;
 
         public int Quantity
@@ -59,7 +62,7 @@ namespace DiceBagApp.ViewModels
         #endregion public data
 
 
-            #region Command
+        #region Command
         public Command AddDiceCommand { get; }
 
         void ExecuteAddDiceCommand()
@@ -75,6 +78,7 @@ namespace DiceBagApp.ViewModels
 
             var groupDice = new GroupDice();
             groupDice.Dices = new List<Dice>();
+            groupDice.BagID = Bag.ID;
 
             foreach (var dice in ListDices)
             {

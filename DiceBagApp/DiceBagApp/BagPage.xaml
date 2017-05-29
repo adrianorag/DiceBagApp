@@ -5,7 +5,7 @@
              Title="Bag">
 
     <StackLayout>
-        <!--<Entry Text="Name of Bag" />-->
+        <Entry Text="{Binding Name}"  />
         <Button Text="Add New Roll Dice" Command="{Binding GroupDicePageCommand}"/>
 
         <ListView ItemsSource="{Binding ListGroupDice}" x:Name="listViewGroupDice">

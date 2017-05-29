@@ -1,4 +1,5 @@
 ﻿using DiceBagApp.Datas;
+using DiceBagApp.Models;
 using DiceBagApp.Services;
 using DiceBagApp.ViewModels;
 using Xamarin.Forms;
@@ -12,7 +13,7 @@ namespace DiceBagApp
 		public GroupDicePage ()
 		{
 			InitializeComponent ();
-            BindingContext = new GroupDiceViewModel(new DiceService(), DiceDataBase);
+            BindingContext = new GroupDiceViewModel(new DiceService(), DiceDataBase, new Bag());
 		}
 
         #region future injection //TODO: Make injection class

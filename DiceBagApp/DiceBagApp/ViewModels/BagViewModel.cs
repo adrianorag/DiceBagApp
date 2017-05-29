@@ -26,13 +26,51 @@ namespace DiceBagApp.ViewModels
             //Commands 
             GroupDicePageCommand = new Command(ExecuteGroupDicePageCommand);
 
-           
+            //Set proprety
+            if (Bag.ID > 0)
+            {
+                Name = bag.Name;
+            }
         }
 
         #region Public Data
         public ObservableCollection<GroupDice> ListGroupDice { get; set; }
         public Bag Bag {get; set;}
+
+        private string _name;
+        public string  Name
+        {
+            get { return _name; }
+            set
+            {
+                SetProperty(ref _name, value);
+                if(value != Bag.Name)
+                    SaveBag();
+            }
+        }
+
         #endregion Public Data
+
+
+        public void SaveBag()
+        {
+            Task.Run(() => {
+                //Simple information
+                Bag.Name = Name;
+
+                var groupDice = new List<GroupDice>();
+                foreach (var item in ListGroupDice)
+                {
+                    groupDice.Add(item);
+                }
+                Bag.GroupDices = groupDice;
+
+                _diceDataBase.SaveBag(Bag);
+
+                RefreshMasterPage();
+            });
+        }
+
 
         public Task<List<GroupDice>> RefreshList()
         {
@@ -44,7 +82,7 @@ namespace DiceBagApp.ViewModels
         public Command GroupDicePageCommand { get; }
         async void ExecuteGroupDicePageCommand()
         {
-            await PushModalAsync<GroupDiceViewModel>(_diceService, _diceDataBase);
+            await PushModalAsync<GroupDiceViewModel>(_diceService, _diceDataBase, Bag);
         }
         
         public async Task DeleteGroupDiceAsync(GroupDice groupDice)

@@ -4,6 +4,7 @@ using DiceBagApp.Services;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System;
+using Xamarin.Forms;
 
 namespace DiceBagApp.ViewModels
 {
@@ -19,6 +20,8 @@ namespace DiceBagApp.ViewModels
             _diceDataBase = diceDataBase;
 
             ListBag = new ObservableCollection<Bag>();
+
+            CreateNewBagCommand = new Command(ExecuteCreateNewBagCommand);
         }
 
         public async void RefreshListBag()
@@ -40,9 +43,19 @@ namespace DiceBagApp.ViewModels
         #endregion Public Data
 
 
+        #region Command
+
+        public Command CreateNewBagCommand { get; }
+        async void ExecuteCreateNewBagCommand()
+        {
+            await PushAsync<BagViewModel>(_diceService, _diceDataBase, new Bag());
+        }
+        
         public async void SelectBagToRoom(Bag bag)
         {
-           await RootPushAsync<RoomViewModel>(_diceService, _diceDataBase, bag);
+            await RootPushAsync<RoomViewModel>(_diceService, _diceDataBase, bag);
         }
+        #endregion Command
+
     }
 }

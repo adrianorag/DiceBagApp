@@ -13,7 +13,7 @@ namespace DiceBagApp
         public BagPage()
         {
             InitializeComponent();
-            BindingContext = new BagViewModel(new DiceService(), DiceDataBase, null);
+            BindingContext = new BagViewModel(new DiceService(), DiceDataBase, new Bag());
 
         }
 

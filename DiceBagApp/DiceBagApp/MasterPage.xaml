@@ -16,5 +16,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Text="Create New Bag" Command="{Binding CreateNewBagCommand}"/>
     </StackLayout>
 </ContentPage>
