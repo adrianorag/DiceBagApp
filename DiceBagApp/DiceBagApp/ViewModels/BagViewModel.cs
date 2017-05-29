@@ -14,12 +14,13 @@ namespace DiceBagApp.ViewModels
         private IDiceService _diceService { get; }
         private IDiceDataBase _diceDataBase { get; }
 
-        public BagViewModel(IDiceService diceService, IDiceDataBase diceDataBase)
+        public BagViewModel(IDiceService diceService, IDiceDataBase diceDataBase, Bag bag)
         {
             //first step
             _diceService = diceService;
             _diceDataBase = diceDataBase;
-            
+            Bag = bag;
+
             ListGroupDice = new ObservableCollection<GroupDice>();
 
             //Commands 
@@ -35,7 +36,7 @@ namespace DiceBagApp.ViewModels
 
         public Task<List<GroupDice>> RefreshList()
         {
-            return _diceDataBase.GetGroupDiceAsync();
+            return Task.Run(() => { return _diceDataBase.GetGroupDice(Bag.ID); });
         }
 
         #region Command

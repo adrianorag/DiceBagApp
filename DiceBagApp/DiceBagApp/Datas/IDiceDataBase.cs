@@ -20,7 +20,8 @@ namespace DiceBagApp.Datas
         Task<int> SaveGroupDiceAsync(GroupDice item);
         Task<int> DeleteGroupDiceAsync(GroupDice item);
         Task<List<GroupDice>> GetGroupDiceAsync();
-        List<GroupDice> GetGroupDice();
+        List<GroupDice> GetGroupDice(int BagID);
+        Task<List<GroupDice>> GetGroupDiceByBagID(int BagID);
 
         void SaveBag(Bag bag);
         Task<List<Bag>> GetBagAsync();

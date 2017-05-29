@@ -121,9 +121,9 @@ namespace DiceBagApp.Datas
             return database.Table<GroupDice>().ToListAsync();
         }
 
-        public List<GroupDice> GetGroupDice()
+        public List<GroupDice> GetGroupDice(int BagID)
         {
-            var taskGroupDice = this.GetGroupDiceAsync();
+            var taskGroupDice = this.GetGroupDiceByBagID(BagID);
 
             var listGroupDice = taskGroupDice.Result;
 
@@ -138,14 +138,25 @@ namespace DiceBagApp.Datas
 
             return listGroupDice;
         }
+
+        public Task<List<GroupDice>> GetGroupDiceByBagID(int BagID)
+        {
+            return database.QueryAsync<GroupDice>($"SELECT * FROM [{nameof(GroupDice)}] WHERE [BagID] = {BagID}");
+        }
+
         #endregion GroupDice
 
 
         #region Bag
         public void SaveBag(Bag bag)
         {
+
+            var task = SaveBagAsync(bag);
+            task.Wait();
+
             foreach (var groupDices in bag.GroupDices)
             {
+                groupDices.BagID = bag.ID;
                 SaveGroupDiceAndItemAsync(groupDices);
             }
         }
@@ -157,7 +168,16 @@ namespace DiceBagApp.Datas
 
         public Task<Bag> GetBagAsync(int id)
         {
-            return database.Table<Bag>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            var taskMaster = Task.Run(() => {
+                var taskBag = database.Table<Bag>().Where(i => i.ID == id).FirstOrDefaultAsync();
+                taskBag.Wait();
+                Bag bag = taskBag.Result;
+                List<GroupDice> groupDices = GetGroupDice(bag.ID);
+                bag.GroupDices = groupDices;
+
+                return bag;
+            });
+            return taskMaster;
         }
 
         public Task<int> SaveBagAsync(Bag item)

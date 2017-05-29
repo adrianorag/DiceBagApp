@@ -5,6 +5,7 @@ using DiceBagApp.Services;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System;
 
 namespace DiceBagApp.ViewModels
 {
@@ -14,10 +15,11 @@ namespace DiceBagApp.ViewModels
         private IDiceService _diceService { get; }
         private IDiceDataBase _diceDataBase { get; }
 
-        public RoomViewModel(IDiceService diceService, IDiceDataBase diceDataBase)
+        public RoomViewModel(IDiceService diceService, IDiceDataBase diceDataBase, Bag bag = null)
         {
             _diceService = diceService;
             _diceDataBase = diceDataBase;
+            Bag = bag == null ? GetBagConfiguration() : bag;
 
             IsLoading = false;
 
@@ -31,6 +33,15 @@ namespace DiceBagApp.ViewModels
             BagPageCommand = new Command(ExecuteBagPageCommand);
             ResetBagCommand = new Command(ExecuteResetBagCommand);
             ClearLogCommand = new Command(ExecuteClearLogCommand);
+        }
+
+        private Bag GetBagConfiguration()
+        {
+
+            var taskBag = _diceDataBase.GetBagAsync(1);
+            taskBag.Wait();
+            var bag = taskBag.Result;
+            return bag;
         }
 
         #region Public Data
@@ -53,9 +64,9 @@ namespace DiceBagApp.ViewModels
         {
             await Task.Run(() =>
             {
-                var listGroupDice = _diceDataBase.GetGroupDice();
+                var listGroupDice = _diceDataBase.GetGroupDice(Bag.ID);
                 //First Login in app
-                if (listGroupDice == null || listGroupDice.Count == 0)
+                if (Bag == null || listGroupDice == null || listGroupDice.Count == 0)
                     ExecuteResetBagCommand();
 
                 GroupDices.Clear();
@@ -72,7 +83,7 @@ namespace DiceBagApp.ViewModels
 
         async void ExecuteBagPageCommand()
         {
-            await PushAsync<BagViewModel>(_diceService, _diceDataBase);
+            await PushAsync<BagViewModel>(_diceService, _diceDataBase, Bag);
         }
 
 

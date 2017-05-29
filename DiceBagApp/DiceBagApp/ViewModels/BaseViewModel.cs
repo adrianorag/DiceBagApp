@@ -30,6 +30,29 @@ namespace DiceBagApp.ViewModels
         }
 
         #region Navegation
+        public async Task RootPushAsync<TViewModel>(params object[] args) where TViewModel : BaseViewModel
+        {
+            var viewModelType = typeof(TViewModel);
+            var viewModelTypeName = viewModelType.Name;
+            var viewModelWordLength = "ViewModel".Length;
+            var viewTypeName = $"DiceBagApp.{viewModelTypeName.Substring(0, viewModelTypeName.Length - viewModelWordLength)}Page";
+            var viewType = Type.GetType(viewTypeName);
+
+            var page = Activator.CreateInstance(viewType) as Page;
+
+            var viewModel = Activator.CreateInstance(viewModelType, args);
+            if (page != null)
+            {
+                page.BindingContext = viewModel;
+            }
+
+            await App.MasterDetail.Detail.Navigation.PopToRootAsync(false);
+            App.MasterDetail.IsPresented = false;
+            App.MasterDetail.Detail = new NavigationPage(new RoomPage());
+             
+        }
+
+
         public async Task PushAsync<TViewModel>(params object[] args) where TViewModel : BaseViewModel
         {
             var viewModelType = typeof(TViewModel);
