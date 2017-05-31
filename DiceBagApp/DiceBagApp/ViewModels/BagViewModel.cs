@@ -3,6 +3,7 @@ using DiceBagApp.Models;
 using DiceBagApp.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -27,11 +28,40 @@ namespace DiceBagApp.ViewModels
             GroupDicePageCommand = new Command(ExecuteGroupDicePageCommand);
 
             //Set proprety
-            if (Bag.ID > 0)
+            CreateBagState();
+            LoadDataToObject();
+
+        }
+        
+        private void CreateBagState()
+        {
+            if (Bag == null || Bag.ID == 0)
             {
-                Name = bag.Name;
+                var taskBag = _diceDataBase.GetBagAsync(false);
+                taskBag.Wait();
+
+                var list = taskBag.Result;
+                if (list != null && list.Count > 0)
+                {
+                    Bag = list.FirstOrDefault();
+                }
+                else
+                {
+                    Bag = new Bag();
+                    Bag.Active = false;
+                    SaveBag();
+                }
+                LoadDataToObject();
             }
         }
+
+
+        private void LoadDataToObject()
+        {
+            //Public Data
+            Name = Bag.Name;
+        }
+        
 
         #region Public Data
         public ObservableCollection<GroupDice> ListGroupDice { get; set; }
@@ -54,6 +84,9 @@ namespace DiceBagApp.ViewModels
 
         public void SaveBag()
         {
+            if (!string.IsNullOrEmpty(Bag.Name))
+                Bag.Active = true;
+
             Task.Run(() => {
                 //Simple information
                 Bag.Name = Name;

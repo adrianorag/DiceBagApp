@@ -121,9 +121,9 @@ namespace DiceBagApp.Datas
             return database.Table<GroupDice>().ToListAsync();
         }
 
-        public List<GroupDice> GetGroupDice(int BagID)
+        public List<GroupDice> GetGroupDice(int bagID)
         {
-            var taskGroupDice = this.GetGroupDiceByBagID(BagID);
+            var taskGroupDice = this.GetGroupDiceByBagID(bagID);
 
             var listGroupDice = taskGroupDice.Result;
 
@@ -139,9 +139,9 @@ namespace DiceBagApp.Datas
             return listGroupDice;
         }
 
-        public Task<List<GroupDice>> GetGroupDiceByBagID(int BagID)
+        public Task<List<GroupDice>> GetGroupDiceByBagID(int bagID)
         {
-            return database.QueryAsync<GroupDice>($"SELECT * FROM [{nameof(GroupDice)}] WHERE [BagID] = {BagID}");
+            return database.QueryAsync<GroupDice>($"SELECT * FROM [{nameof(GroupDice)}] WHERE [BagID] = {bagID}" );
         }
 
         #endregion GroupDice
@@ -161,9 +161,9 @@ namespace DiceBagApp.Datas
             }
         }
 
-        public Task<List<Bag>> GetBagAsync()
+        public Task<List<Bag>> GetBagAsync(bool active = true)
         {
-            return database.Table<Bag>().ToListAsync();
+            return database.Table<Bag>().Where(i => i.Active == active).ToListAsync();
         }
 
         public Task<Bag> GetBagAsync(int id)

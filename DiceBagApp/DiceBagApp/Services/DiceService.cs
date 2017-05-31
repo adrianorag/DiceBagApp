@@ -58,6 +58,7 @@ namespace DiceBagApp.Services
         {
             var Bag = new Bag();
             Bag.Name = "Default";
+            Bag.Active = true;
 
             var ListGroupDice = new List<GroupDice>();
 

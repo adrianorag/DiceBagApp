@@ -10,6 +10,7 @@ namespace DiceBagApp.Models
         public string Name { get; set; }
         [Ignore]
         public List<GroupDice> GroupDices { get; set; }
+        public bool Active { get; set; }
 
         //TODO: Create another class for configuration
         public string Color { get; set; }
