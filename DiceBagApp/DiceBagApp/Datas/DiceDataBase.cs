@@ -66,17 +66,17 @@ namespace DiceBagApp.Datas
             }
         }
 
-        public Task<int> DeleteItemAsync(Dice item)
+        public Task<int> DeleteDiceAsync(Dice item)
         {
             return database.DeleteAsync(item);
         }
 
-        public async Task DeleteItemAsync(GroupDice groupDice)
+        public async Task DeleteDiceByGroupDiceAsync(GroupDice groupDice)
         {
             var listItem = await GetDiceByGroupDice(groupDice.ID);
             foreach (var item in listItem)
             {
-                await this.DeleteItemAsync(item);
+                await this.DeleteDiceAsync(item);
             }
         }
 
@@ -161,9 +161,35 @@ namespace DiceBagApp.Datas
             }
         }
 
+
+
+        public Task<int> DeleteBagAsync(Bag bag)
+        {
+           
+            return database.DeleteAsync(bag);
+        }
+
         public Task<List<Bag>> GetBagAsync(bool active = true)
         {
             return database.Table<Bag>().Where(i => i.Active == active).ToListAsync();
+        }
+
+        public Task<Bag> GetFirstBagAsync(bool active = true)
+        {
+            var taskMaster = Task.Run(() => {
+                var taskBag = database.Table<Bag>().Where(i => i.Active == active).FirstOrDefaultAsync();
+                taskBag.Wait();
+                Bag bag = taskBag.Result;
+
+                if (bag == null)
+                    return new Bag();
+
+                List<GroupDice> groupDices = GetGroupDice(bag.ID);
+                bag.GroupDices = groupDices;
+
+                return bag;
+            });
+            return taskMaster;
         }
 
         public Task<Bag> GetBagAsync(int id)

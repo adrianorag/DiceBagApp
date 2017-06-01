@@ -120,7 +120,7 @@ namespace DiceBagApp.ViewModels
         
         public async Task DeleteGroupDiceAsync(GroupDice groupDice)
         {
-            await _diceDataBase.DeleteItemAsync(groupDice);
+            await _diceDataBase.DeleteDiceByGroupDiceAsync(groupDice);
             await _diceDataBase.DeleteGroupDiceAsync(groupDice);
         }
         #endregion Command

@@ -5,7 +5,6 @@ using DiceBagApp.Services;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using System;
 
 namespace DiceBagApp.ViewModels
 {
@@ -38,7 +37,7 @@ namespace DiceBagApp.ViewModels
         private Bag GetBagConfiguration()
         {
 
-            var taskBag = _diceDataBase.GetBagAsync(1);
+            var taskBag = _diceDataBase.GetFirstBagAsync(true);
             taskBag.Wait();
             var bag = taskBag.Result;
             return bag;
@@ -66,8 +65,16 @@ namespace DiceBagApp.ViewModels
             {
                 var listGroupDice = _diceDataBase.GetGroupDice(Bag.ID);
                 //First Login in app
-                if (Bag == null || listGroupDice == null || listGroupDice.Count == 0)
+                if (Bag == null || Bag.ID == 0)
+                {
                     ExecuteResetBagCommand();
+                }
+                else if (listGroupDice == null || listGroupDice.Count == 0)
+                {
+                    DesactiveBag(Bag);
+                    return;
+                }
+                   
 
                 GroupDices.Clear();
                 foreach (var item in listGroupDice)
@@ -75,6 +82,17 @@ namespace DiceBagApp.ViewModels
                     GroupDices.Add(item);
                 }
             });
+        }
+
+        private void DesactiveBag(Bag bag)
+        {
+            
+            var taskDel =_diceDataBase.DeleteBagAsync(bag);
+            taskDel.Wait();
+            Bag = GetBagConfiguration();
+            RefreshListGroupDice();
+
+            base.RefreshMasterPage();
         }
 
         #region Command
@@ -108,6 +126,7 @@ namespace DiceBagApp.ViewModels
                     Task.WaitAll();
                     RefreshListGroupDice();
                     IsLoading = false;
+                    base.RefreshMasterPage();
                 }
             );
         }
