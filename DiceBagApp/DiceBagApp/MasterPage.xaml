@@ -3,19 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DiceBagApp.MasterPage" 
              Title="Master">
-    <StackLayout  Margin="0,20,0,0">
-        <Label Text="Bags" />
-        <ListView ItemsSource="{Binding ListBag}" Margin="10,0,0,0" ItemSelected="ListView_ItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal" Padding="10">
-                            <Label Text="{Binding Name}" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button Text="Create New Bag" Command="{Binding CreateNewBagCommand}"/>
+    <StackLayout>
+        <StackLayout>
+            <ScrollView>
+                <AbsoluteLayout BackgroundColor="#2196F3">
+                    <!--<Button BackgroundColor="Maroon" BorderRadius="35" AbsoluteLayout.LayoutBounds=".5,5,70,70" AbsoluteLayout.LayoutFlags="XProportional" />-->
+                    <Button BackgroundColor="#2196F3" BorderColor="#2196F3" Image="Icon.png" BorderRadius="0" AbsoluteLayout.LayoutBounds=".5,5,85,85" AbsoluteLayout.LayoutFlags="XProportional" />
+                </AbsoluteLayout>
+            </ScrollView> 
+        </StackLayout>
+        <StackLayout Margin="5,0,0,0" >
+            <ListView ItemsSource="{Binding ListBag}" Margin="0,0,0,0" ItemSelected="ListView_ItemSelected" Style=" ">
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Bags.png" HorizontalOptions="Start" WidthRequest="25" HeightRequest="25" />
+                        <Label Text="Bags" TextColor="#1565C0" />
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="BagSingle" WidthRequest="20" HeightRequest="20" />
+                                <Label Text="{Binding Name}" TextColor="#2196F3" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Button Image="BagSinglePlus.png"  Text="New Bag" Command="{Binding CreateNewBagCommand}" />
+                </ListView.Footer>
+            </ListView>
+            
+        </StackLayout>
+        
     </StackLayout>
 </ContentPage>
