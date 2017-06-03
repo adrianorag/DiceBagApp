@@ -1,5 +1,4 @@
-﻿
-using DiceBagApp.Datas;
+﻿using DiceBagApp.Datas;
 using DiceBagApp.Models;
 using DiceBagApp.Services;
 using System.Collections.Generic;
@@ -30,13 +29,13 @@ namespace DiceBagApp.ViewModels
             RemoveLastDiceCommand = new Command(ExecuteRemoveLastDiceCommand);
             SaveCommand = new Command(ExecuteSaveCommand);
             CancelDiceCommand = new Command(ExecuteCancelDiceCommand);
+            AddModifierCommand = new Command(ExecuteAddModifierCommand);
         }
 
         #region public data
         public Bag Bag { get; set; }
 
         private int _quantity;
-
         public int Quantity
         {
             get { return _quantity; }
@@ -46,7 +45,6 @@ namespace DiceBagApp.ViewModels
         }
 
         private int _dice;
-
         public int Dice
         {
             get { return _dice; }
@@ -56,6 +54,15 @@ namespace DiceBagApp.ViewModels
             }
         }
 
+        private int _modifier;
+        public int Modifier
+        {
+            get { return _modifier; }
+            set
+            {
+                SetProperty(ref _modifier, value);
+            }
+        }
 
         public ObservableCollection<Dice> ListDices { get; set;}
 
@@ -75,10 +82,10 @@ namespace DiceBagApp.ViewModels
         public Command SaveCommand { get; }
         async void ExecuteSaveCommand()
         {
-
             var groupDice = new GroupDice();
             groupDice.Dices = new List<Dice>();
             groupDice.BagID = Bag.ID;
+            groupDice.Modifier = Modifier;
 
             foreach (var dice in ListDices)
             {
@@ -99,7 +106,6 @@ namespace DiceBagApp.ViewModels
             }
 
             groupDice.Name = _diceService.NameDefaultGroupDice(groupDice);
-            groupDice.Modifier = 0;
             _diceDataBase.SaveGroupDiceAndItemAsync(groupDice);
 
             await PopModalAsync();
@@ -120,6 +126,14 @@ namespace DiceBagApp.ViewModels
         {
 
             await PopModalAsync();
+        }
+
+        public Command AddModifierCommand { get; }
+        void ExecuteAddModifierCommand(object param)
+        {
+            var val = int.Parse(param.ToString());
+
+            Modifier += val;
         }
         #endregion Command
 

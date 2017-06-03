@@ -16,6 +16,16 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
+        <Label Text="Modifier" />
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+            <Button Text="-10" Command="{Binding AddModifierCommand}"  CommandParameter="-10"/>
+            <Button Text="-1"  Command="{Binding AddModifierCommand}"  CommandParameter="-1" />
+            <Label Text="{Binding Modifier}" WidthRequest="30" MinimumWidthRequest="30" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold" />
+            <Button Text="+1"  Command="{Binding AddModifierCommand}"  CommandParameter="1" />
+            <Button Text="+10"  Command="{Binding AddModifierCommand}"  CommandParameter="10" />
+        </StackLayout>
+
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
             <Button Text="Add Dice" Command="{Binding AddDiceCommand}" />
             <Button Text="Remove Last Dice" Command="{Binding RemoveLastDiceCommand}"/>

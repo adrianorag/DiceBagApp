@@ -24,7 +24,7 @@ namespace DiceBagApp.Services
                 }
             }
             logRoll.Result = logRoll.GroupDice.Dices.Sum(_ => _.Result.Sum());
-
+            logRoll.Result += groupDice.Modifier;
 
             WriteDescriptionRollDice(ref logRoll);
             return logRoll;
@@ -47,6 +47,16 @@ namespace DiceBagApp.Services
                     aux = "+";
                 }
             }
+
+            if (logRoll.GroupDice.Modifier > 0)
+            {
+                description += "+" + logRoll.GroupDice.Modifier.ToString();
+            }
+            else if (logRoll.GroupDice.Modifier < 0)
+            {
+                description += logRoll.GroupDice.Modifier.ToString();
+            }
+
             description += $")";
 
             logRoll.Description = description;
@@ -127,6 +137,15 @@ namespace DiceBagApp.Services
                 returnName += $"{aux}{auxNumber}D{dice.NumberFaceOfDice}";
 
                 aux = " + ";
+            }
+
+            if(groupDice.Modifier > 0)
+            {
+                returnName += " +"+ groupDice.Modifier.ToString();
+            }
+            else if (groupDice.Modifier < 0)
+            {
+                returnName += groupDice.Modifier.ToString();
             }
 
             returnName = returnName.Trim();
