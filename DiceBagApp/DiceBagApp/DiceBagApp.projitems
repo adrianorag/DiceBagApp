@@ -16,6 +16,10 @@
       <DependentUpon>BagPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationPage.xaml.cs">
+      <DependentUpon>ConfigurationPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LastResultConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Datas\DiceDataBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Datas\IDiceDataBase.cs" />
@@ -50,6 +54,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BagViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ConfigurationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GroupDiceViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MasterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RoomDetailViewModel.cs" />
@@ -91,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)RoomDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ConfigurationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

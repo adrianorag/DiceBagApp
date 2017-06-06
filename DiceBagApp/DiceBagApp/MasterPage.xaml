@@ -8,7 +8,7 @@
             <ScrollView>
                 <AbsoluteLayout BackgroundColor="#2196F3">
                     <!--<Button BackgroundColor="Maroon" BorderRadius="35" AbsoluteLayout.LayoutBounds=".5,5,70,70" AbsoluteLayout.LayoutFlags="XProportional" />-->
-                    <Button BackgroundColor="#2196F3" BorderColor="#2196F3" Image="Icon.png" BorderRadius="0" AbsoluteLayout.LayoutBounds=".5,5,85,85" AbsoluteLayout.LayoutFlags="XProportional" />
+                    <Button Command="{Binding GoConfigurationCommand}" BackgroundColor="#2196F3" BorderColor="#2196F3" Image="Icon.png" BorderRadius="0" AbsoluteLayout.LayoutBounds=".5,5,85,85" AbsoluteLayout.LayoutFlags="XProportional" />
                 </AbsoluteLayout>
             </ScrollView> 
         </StackLayout>

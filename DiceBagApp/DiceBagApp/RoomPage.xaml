@@ -11,7 +11,7 @@
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit Bag" Command="{Binding BagPageCommand}" Order="Default" Priority="0" />
-        <ToolbarItem Text="Reset Bag" Command="{Binding ResetBagCommand}" Order="Secondary" Priority="1" />
+        <!--<ToolbarItem Text="Reset Bag" Command="{Binding ResetBagCommand}" Order="Secondary" Priority="1" />-->
         <ToolbarItem Text="Clear Log" Command="{Binding ClearLogCommand}" Order="Secondary" Priority="1" />
     </ContentPage.ToolbarItems>
     <StackLayout>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiceBagApp.ConfigurationPage"
+             Title="Configuration"
+             Icon="BagSingle.png">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout>
+                <ScrollView>
+                    <AbsoluteLayout BackgroundColor="#2196F3">
+                        <!--<Button BackgroundColor="Maroon" BorderRadius="35" AbsoluteLayout.LayoutBounds=".5,5,70,70" AbsoluteLayout.LayoutFlags="XProportional" />-->
+                        <Button BackgroundColor="#2196F3" BorderColor="#2196F3" Image="Icon.png" BorderRadius="0" AbsoluteLayout.LayoutBounds=".5,5,85,85" AbsoluteLayout.LayoutFlags="XProportional" />
+                    </AbsoluteLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <Button Text="Reset All Datas" Command="{Binding ResetBagCommand}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

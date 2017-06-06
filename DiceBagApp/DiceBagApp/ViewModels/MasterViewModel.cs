@@ -22,6 +22,7 @@ namespace DiceBagApp.ViewModels
             ListBag = new ObservableCollection<Bag>();
 
             CreateNewBagCommand = new Command(ExecuteCreateNewBagCommand);
+            GoConfigurationCommand = new Command(ExecuteGoConfigurationCommand);
         }
 
         public async void RefreshListBag()
@@ -55,6 +56,14 @@ namespace DiceBagApp.ViewModels
         {
             await RootPushAsync<RoomViewModel>(_diceService, _diceDataBase, bag);
         }
+
+        public Command GoConfigurationCommand { get; }
+        async void ExecuteGoConfigurationCommand()
+        {
+            await PushAsync<ConfigurationViewModel>(_diceService, _diceDataBase);
+        }
+
+        
         #endregion Command
 
     }
