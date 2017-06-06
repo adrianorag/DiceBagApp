@@ -5,6 +5,10 @@
              xmlns:c="clr-namespace:DiceBagApp.Helpers;assembly:DiceBagApp"
              Title="Bag">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="Trash.png" Order="Default" Priority="0" Clicked="ToolbarItem_Clicked"  />
+    </ContentPage.ToolbarItems>
+
     <StackLayout>
         <Entry Text="{Binding Name}" Placeholder="Name of Bag" />
         <Button Text="Add New Roll Dice" Command="{Binding GroupDicePageCommand}"/>

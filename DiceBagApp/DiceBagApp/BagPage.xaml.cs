@@ -1,7 +1,9 @@
 ﻿using DiceBagApp.Datas;
+using DiceBagApp.Helpers;
 using DiceBagApp.Models;
 using DiceBagApp.Services;
 using DiceBagApp.ViewModels;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -50,9 +52,19 @@ namespace DiceBagApp
 
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
-            var x = sender;
-            
+            var element = (CustomSwitch)sender;
+            ((BagViewModel)BindingContext).SetMarkItem(element.Item as GroupDice, element.IsToggled);
+        }
 
+        private async void ToolbarItem_Clicked(object sender, System.EventArgs e)
+        {
+            
+            var task = ((BagViewModel)BindingContext).ExecuteDeletaAllMarkItemCommand();
+            task.Wait();
+            listViewGroupDice.ItemsSource = await ((BagViewModel)BindingContext).RefreshList();
+             
+            
+            
         }
     }
 }
