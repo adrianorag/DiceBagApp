@@ -24,6 +24,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CustomObservableCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\CustomSwitch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

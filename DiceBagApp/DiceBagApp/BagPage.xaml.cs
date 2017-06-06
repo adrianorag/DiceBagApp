@@ -47,5 +47,12 @@ namespace DiceBagApp
 
         }
         #endregion future injection
+
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            var x = sender;
+            
+
+        }
     }
 }

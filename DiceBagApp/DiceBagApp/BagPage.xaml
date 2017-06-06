@@ -2,19 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DiceBagApp.BagPage"
+             xmlns:c="clr-namespace:DiceBagApp.Helpers;assembly:DiceBagApp"
              Title="Bag">
 
     <StackLayout>
-        <Entry Text="{Binding Name}"  />
+        <Entry Text="{Binding Name}" Placeholder="Name of Bag" />
         <Button Text="Add New Roll Dice" Command="{Binding GroupDicePageCommand}"/>
 
-        <ListView ItemsSource="{Binding ListGroupDice}" x:Name="listViewGroupDice">
+        <ListView ItemsSource="{Binding ListGroupDice}" x:Name="listViewGroupDice" Margin="10,10,10,10">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                            <Label Text="{Binding Name}" VerticalOptions="Center" />
-                            <Button Text="X" VerticalOptions="Center"  Clicked="ButtonClickedRemoveGroupDice" CommandParameter="{Binding .}" />
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand" />
+                            <c:CustomSwitch HorizontalOptions="EndAndExpand" Item="{Binding .}"  Toggled="Switch_Toggled" />
+                            <!--<Button Text="X" VerticalOptions="Center"  Clicked="ButtonClickedRemoveGroupDice" CommandParameter="{Binding .}" />-->
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
