@@ -236,10 +236,17 @@ namespace DiceBagApp.Datas
                 return database.InsertAsync(logRoll);
             }
         }
+
         public Task<List<LogRoll>> GetLogRollAsync()
         {
             return database.Table<LogRoll>().ToListAsync();
         }
+
+        public void DeleteLog()
+        {
+            database.ExecuteAsync($"DELETE FROM {nameof(LogRoll)}");
+        }
+
 
         #endregion LogRoll
     }

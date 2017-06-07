@@ -119,6 +119,7 @@ namespace DiceBagApp.ViewModels
         public void ExecuteClearLogCommand()
         {
             LogRoll.Clear();
+            _diceDataBase.DeleteLog();
         }
 
 

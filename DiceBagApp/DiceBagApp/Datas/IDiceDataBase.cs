@@ -35,5 +35,6 @@ namespace DiceBagApp.Datas
 
         Task<int> SaveLogRoll(LogRoll logRoll);
         Task<List<LogRoll>> GetLogRollAsync();
+        void DeleteLog();
     }
 }
