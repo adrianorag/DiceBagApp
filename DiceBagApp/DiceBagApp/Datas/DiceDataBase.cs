@@ -242,7 +242,7 @@ namespace DiceBagApp.Datas
             return database.Table<LogRoll>().ToListAsync();
         }
 
-        public void DeleteLog()
+        public void DeleteLogRoll()
         {
             database.ExecuteAsync($"DELETE FROM {nameof(LogRoll)}");
         }
