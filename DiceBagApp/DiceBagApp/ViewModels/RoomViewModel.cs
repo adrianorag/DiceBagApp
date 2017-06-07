@@ -2,7 +2,6 @@
 using DiceBagApp.Helpers;
 using DiceBagApp.Models;
 using DiceBagApp.Services;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -24,7 +23,7 @@ namespace DiceBagApp.ViewModels
 
 
             GroupDices = new CustomObservableCollection<GroupDice>();
-            LogRoll = new ObservableCollection<LogRoll>();
+            LogRoll = new CustomObservableCollection<LogRoll>();
 
 
             //Commands 
@@ -46,7 +45,7 @@ namespace DiceBagApp.ViewModels
         #region Public Data
         public Bag Bag { get; set; }
         public CustomObservableCollection<GroupDice> GroupDices { get; set; }
-        public ObservableCollection<LogRoll> LogRoll { get; set; }
+        public CustomObservableCollection<LogRoll> LogRoll { get; set; }
 
         private bool _isLoading;
 
@@ -59,9 +58,9 @@ namespace DiceBagApp.ViewModels
 
         #endregion Public Data
         
-        public async void RefreshListGroupDice()
+        public Task RefreshListGroupDice()
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 var listGroupDice = _diceDataBase.GetGroupDice(Bag.ID);
                 //First Login in app
@@ -81,6 +80,17 @@ namespace DiceBagApp.ViewModels
                 {
                     GroupDices.Add(item);
                 }
+
+
+                var taskLog= _diceDataBase.GetLogRollAsync();
+                var log = taskLog.Result;
+                LogRoll.Clear();
+                foreach (var item in log)
+                {
+                    LogRoll.Add(item);
+                }
+                taskLog.Wait();
+
             });
         }
 
@@ -138,9 +148,8 @@ namespace DiceBagApp.ViewModels
 
             var result = _diceService.RollDice(groupDice);
             LogRoll.Add(result);
+            _diceDataBase.SaveLogRoll(result);
             groupDice.LastResult = result.Result;
-
-
             GroupDices.ReportItemChange(groupDice);
         }
         #endregion Command

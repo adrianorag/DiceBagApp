@@ -31,5 +31,9 @@ namespace DiceBagApp.Datas
         Task<Bag> GetFirstBagAsync(bool active = true);
         Task<Bag> GetBagAsync(int id);
         Task<int> SaveBagAsync(Bag item);
+
+
+        Task<int> SaveLogRoll(LogRoll logRoll);
+        Task<List<LogRoll>> GetLogRollAsync();
     }
 }

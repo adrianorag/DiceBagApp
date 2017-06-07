@@ -20,8 +20,17 @@ namespace DiceBagApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            ((RoomViewModel)BindingContext).RefreshListGroupDice();
+            var task = ((RoomViewModel)BindingContext).RefreshListGroupDice();
+            task.Wait();
+            LogRollScrollToEnd();
+            
         }
+
+        //protected override void OnBindingContextChanged()
+        //{
+        //    base.OnBindingContextChanged();
+        //    LogRollScrollToEnd();
+        //}
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -30,9 +39,18 @@ namespace DiceBagApp
 
             var lastItem = eListViewLogRoll.ItemsSource.Cast<object>().LastOrDefault();
             eListViewLogRoll.ScrollTo(lastItem, ScrollToPosition.End, false);
+            LogRollScrollToEnd();
         }
 
+        private void LogRollScrollToEnd()
+        {
 
+            if (eListViewLogRoll.ItemsSource == null)
+                return;
+
+            var lastItem = eListViewLogRoll.ItemsSource.Cast<object>().LastOrDefault();
+            eListViewLogRoll.ScrollTo(lastItem, ScrollToPosition.End, true);
+        }
 
         #region future injection //TODO: Make injection class
         private DiceDataBase _diceDataBase;

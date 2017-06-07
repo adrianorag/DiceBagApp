@@ -28,6 +28,8 @@ namespace DiceBagApp.Datas
             database.CreateTableAsync<Dice>().Wait();
             database.CreateTableAsync<GroupDice>().Wait();
             database.CreateTableAsync<Bag>().Wait();
+            database.CreateTableAsync<LogRoll>().Wait();
+            
         }
 
         private void DropAllDatabe()
@@ -35,6 +37,7 @@ namespace DiceBagApp.Datas
             database.DropTableAsync<Dice>().Wait();
             database.DropTableAsync<GroupDice>().Wait();
             database.DropTableAsync<Bag>().Wait();
+            database.DropTableAsync<LogRoll>().Wait();
         }
 
         #region Dice
@@ -219,5 +222,25 @@ namespace DiceBagApp.Datas
         }
 
         #endregion Bag
+
+
+        #region LogRoll
+        public Task<int> SaveLogRoll(LogRoll logRoll)
+        {
+            if (logRoll.ID != 0)
+            {
+                return database.UpdateAsync(logRoll);
+            }
+            else
+            {
+                return database.InsertAsync(logRoll);
+            }
+        }
+        public Task<List<LogRoll>> GetLogRollAsync()
+        {
+            return database.Table<LogRoll>().ToListAsync();
+        }
+
+        #endregion LogRoll
     }
 }
