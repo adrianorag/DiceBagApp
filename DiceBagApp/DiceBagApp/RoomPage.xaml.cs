@@ -26,12 +26,6 @@ namespace DiceBagApp
             
         }
 
-        //protected override void OnBindingContextChanged()
-        //{
-        //    base.OnBindingContextChanged();
-        //    LogRollScrollToEnd();
-        //}
-
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var groupDice = (sender as ListView).SelectedItem as GroupDice;
@@ -46,6 +40,9 @@ namespace DiceBagApp
         {
 
             if (eListViewLogRoll.ItemsSource == null)
+                return;
+
+            if (eListViewLogRoll.ItemsSource.Cast<object>().Count() == 0)
                 return;
 
             var lastItem = eListViewLogRoll.ItemsSource.Cast<object>().LastOrDefault();
