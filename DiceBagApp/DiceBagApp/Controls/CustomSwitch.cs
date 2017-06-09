@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace DiceBagApp.Helpers
+namespace DiceBagApp.Controls
 {
     class CustomSwitch : Switch
     {
