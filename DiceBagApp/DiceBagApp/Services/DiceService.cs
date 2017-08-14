@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DiceBagApp.Services
 {
-    class DiceService : IDiceService
+    public class DiceService : IDiceService
     {
 
         public LogRoll RollDice(GroupDice groupDice) {

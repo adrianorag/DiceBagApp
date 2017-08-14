@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DiceBagApp.Services
 {
-    interface IDiceService
+    public interface IDiceService
     {
         Bag GetDefaultBag();
 

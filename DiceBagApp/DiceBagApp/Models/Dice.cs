@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DiceBagApp.Models
 {
-    class Dice
+    public class Dice
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

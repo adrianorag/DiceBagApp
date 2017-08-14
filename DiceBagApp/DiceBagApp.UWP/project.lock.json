@@ -2,6 +2,15 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -2380,6 +2389,20 @@
           }
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -2400,6 +2423,15 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -4867,6 +4899,20 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -4887,6 +4933,15 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -7393,6 +7448,20 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -7413,6 +7482,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -9889,6 +9967,20 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -9909,6 +10001,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -12424,6 +12525,20 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -12444,6 +12559,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -14920,6 +15044,20 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -14940,6 +15078,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -17455,6 +17602,20 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -17476,6 +17637,18 @@
     }
   },
   "libraries": {
+    "CommonServiceLocator/1.3.0": {
+      "sha512": "fbjO0SNwbOFPdwVfyqv+B7gIJ2CVBOFPKqn1mDDECK7KER8jFaOdcvroFYoAHa0ktPbxi5s+15qOLnA96f8GSA==",
+      "type": "package",
+      "path": "commonservicelocator/1.3.0",
+      "files": [
+        "commonservicelocator.1.3.0.nupkg.sha512",
+        "commonservicelocator.nuspec",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.XML",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.pdb"
+      ]
+    },
     "Microsoft.CSharp/4.0.1": {
       "sha512": "17h8b5mXa87XYKrrVqdgZ38JefSUqLChUQpXgSnpzsM0nDOhE40FTeNWOJ/YmySGV6tG6T8+hjz6vxbknHJr6A==",
       "type": "package",
@@ -25958,6 +26131,33 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Unity/4.0.1": {
+      "sha512": "RHFTCW13E186hCI0Z4R47tl2SyxQOp3TNaBlilxKktO+u+NUWyOK/nPJ25PWwgPh4j4/GM46PQszSsusui+ikw==",
+      "type": "package",
+      "path": "unity/4.0.1",
+      "files": [
+        "UnityConfiguration30.xsd",
+        "lib/net45/Microsoft.Practices.Unity.Configuration.XML",
+        "lib/net45/Microsoft.Practices.Unity.Configuration.dll",
+        "lib/net45/Microsoft.Practices.Unity.RegistrationByConvention.XML",
+        "lib/net45/Microsoft.Practices.Unity.RegistrationByConvention.dll",
+        "lib/net45/Microsoft.Practices.Unity.dll",
+        "lib/net45/Microsoft.Practices.Unity.xml",
+        "lib/portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10/Microsoft.Practices.Unity.dll",
+        "lib/portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10/Microsoft.Practices.Unity.xml",
+        "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.XML",
+        "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll",
+        "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.pri",
+        "lib/win8/Microsoft.Practices.Unity.dll",
+        "lib/win8/Microsoft.Practices.Unity.xml",
+        "lib/wp80/Microsoft.Practices.Unity.RegistrationByConvention.XML",
+        "lib/wp80/Microsoft.Practices.Unity.RegistrationByConvention.dll",
+        "lib/wp80/Microsoft.Practices.Unity.dll",
+        "lib/wp80/Microsoft.Practices.Unity.xml",
+        "unity.4.0.1.nupkg.sha512",
+        "unity.nuspec"
+      ]
+    },
     "Xamarin.Forms/2.3.4.247": {
       "sha512": "+6VN8IBSah7EcNJ4SV3pIhNA8tNlBaPLfr3+hQpPIllueJrXI5QtjM0tAJusPc2V1cYyC4YKvA1fs5c/A8RrBw==",
       "type": "package",
@@ -26123,6 +26323,7 @@
       "NETStandard.Library >= 1.6.0",
       "Newtonsoft.Json >= 8.0.3",
       "SQLite.Net-PCL >= 3.0.5",
+      "Unity >= 4.0.1",
       "Xamarin.Forms >= 2.3.4.247",
       "sqlite-net-pcl >= 1.1.2"
     ],
@@ -26145,6 +26346,7 @@
       "Newtonsoft.Json": "8.0.3",
       "sqlite-net-pcl": "1.1.2",
       "SQLite.Net-PCL": "3.0.5",
+      "Unity": "4.0.1",
       "Xamarin.Forms": "2.3.4.247"
     },
     "frameworks": {

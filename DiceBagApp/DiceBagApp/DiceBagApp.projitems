@@ -12,27 +12,28 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)BagPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)DependencyInjection\ViewModelLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BagPage.xaml.cs">
       <DependentUpon>BagPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ConfigurationPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ConfigurationPage.xaml.cs">
       <DependentUpon>ConfigurationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LastResultConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Datas\DiceDataBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Datas\IDiceDataBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GroupDicePage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\GroupDicePage.xaml.cs">
       <DependentUpon>GroupDicePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomObservableCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomSwitch.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)MasterPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -41,11 +42,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Dice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\GroupDice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LogRoll.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RoomDetailPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RoomDetailPage.xaml.cs">
       <DependentUpon>RoomDetailPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)RoomPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RoomPage.xaml.cs">
       <DependentUpon>RoomPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -61,7 +62,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RoomViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -71,39 +72,42 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)BagPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BagPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)GroupDicePage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GroupDicePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MasterPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MasterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)RoomPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\RoomPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)RoomDetailPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\RoomDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ConfigurationPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ConfigurationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
   </ItemGroup>
 </Project>

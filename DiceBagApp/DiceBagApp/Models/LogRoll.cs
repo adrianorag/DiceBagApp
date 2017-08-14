@@ -3,7 +3,7 @@ using System;
 
 namespace DiceBagApp.Models
 {
-    class LogRoll
+    public class LogRoll
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
