@@ -13,6 +13,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DependencyInjection\ViewModelLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IRestService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RestService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\BagPage.xaml.cs">
       <DependentUpon>BagPage.xaml</DependentUpon>
       <SubType>Code</SubType>

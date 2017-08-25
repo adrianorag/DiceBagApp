@@ -2403,6 +2403,17 @@
           "lib/win8/Microsoft.Practices.Unity.dll": {}
         }
       },
+      "Xam.Plugin.DeviceInfo/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -4911,6 +4922,17 @@
         "runtime": {
           "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
           "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
+      "Xam.Plugin.DeviceInfo/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
         }
       },
       "Xamarin.Forms/2.3.4.247": {
@@ -7462,6 +7484,17 @@
           "lib/win8/Microsoft.Practices.Unity.dll": {}
         }
       },
+      "Xam.Plugin.DeviceInfo/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -9979,6 +10012,17 @@
         "runtime": {
           "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
           "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
+      "Xam.Plugin.DeviceInfo/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
         }
       },
       "Xamarin.Forms/2.3.4.247": {
@@ -12539,6 +12583,17 @@
           "lib/win8/Microsoft.Practices.Unity.dll": {}
         }
       },
+      "Xam.Plugin.DeviceInfo/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.247": {
         "type": "package",
         "compile": {
@@ -15056,6 +15111,17 @@
         "runtime": {
           "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
           "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
+      "Xam.Plugin.DeviceInfo/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
         }
       },
       "Xamarin.Forms/2.3.4.247": {
@@ -17614,6 +17680,17 @@
         "runtime": {
           "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
           "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
+      "Xam.Plugin.DeviceInfo/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll": {},
+          "lib/UAP10/Plugin.DeviceInfo.dll": {}
         }
       },
       "Xamarin.Forms/2.3.4.247": {
@@ -26158,6 +26235,59 @@
         "unity.nuspec"
       ]
     },
+    "Xam.Plugin.DeviceInfo/3.0.1": {
+      "sha512": "DnLpOXb7AMf0nlUJx2rSh2PbUGPslwO/A5V7mElKQm5RZNbzo2nAAH8DWoHCeGmK/TYbvije/3xLPWDCAUbKwg==",
+      "type": "package",
+      "path": "xam.plugin.deviceinfo/3.0.1",
+      "files": [
+        "lib/MonoAndroid10/Plugin.DeviceInfo.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.DeviceInfo.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.DeviceInfo.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.DeviceInfo.dll",
+        "lib/MonoAndroid10/Plugin.DeviceInfo.pdb",
+        "lib/MonoAndroid10/Plugin.DeviceInfo.xml",
+        "lib/UAP10/Plugin.DeviceInfo.Abstractions.dll",
+        "lib/UAP10/Plugin.DeviceInfo.Abstractions.pdb",
+        "lib/UAP10/Plugin.DeviceInfo.Abstractions.xml",
+        "lib/UAP10/Plugin.DeviceInfo.XML",
+        "lib/UAP10/Plugin.DeviceInfo.dll",
+        "lib/UAP10/Plugin.DeviceInfo.pdb",
+        "lib/UAP10/Plugin.DeviceInfo.pri",
+        "lib/Xamarin.Mac20/Plugin.DeviceInfo.Abstractions.dll",
+        "lib/Xamarin.Mac20/Plugin.DeviceInfo.Abstractions.pdb",
+        "lib/Xamarin.Mac20/Plugin.DeviceInfo.Abstractions.xml",
+        "lib/Xamarin.Mac20/Plugin.DeviceInfo.dll",
+        "lib/Xamarin.Mac20/Plugin.DeviceInfo.pdb",
+        "lib/Xamarin.Mac20/Plugin.DeviceInfo.xml",
+        "lib/Xamarin.iOS10/Plugin.DeviceInfo.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.DeviceInfo.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.DeviceInfo.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.DeviceInfo.dll",
+        "lib/Xamarin.iOS10/Plugin.DeviceInfo.pdb",
+        "lib/Xamarin.iOS10/Plugin.DeviceInfo.xml",
+        "lib/XamarinTVOS/Plugin.DeviceInfo.Abstractions.dll",
+        "lib/XamarinTVOS/Plugin.DeviceInfo.Abstractions.pdb",
+        "lib/XamarinTVOS/Plugin.DeviceInfo.Abstractions.xml",
+        "lib/XamarinTVOS/Plugin.DeviceInfo.dll",
+        "lib/XamarinTVOS/Plugin.DeviceInfo.pdb",
+        "lib/XamarinTVOS/Plugin.DeviceInfo.xml",
+        "lib/XamarinWatchOS/Plugin.DeviceInfo.Abstractions.dll",
+        "lib/XamarinWatchOS/Plugin.DeviceInfo.Abstractions.pdb",
+        "lib/XamarinWatchOS/Plugin.DeviceInfo.Abstractions.xml",
+        "lib/XamarinWatchOS/Plugin.DeviceInfo.dll",
+        "lib/XamarinWatchOS/Plugin.DeviceInfo.pdb",
+        "lib/XamarinWatchOS/Plugin.DeviceInfo.xml",
+        "lib/netstandard1.0/Plugin.DeviceInfo.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.DeviceInfo.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.DeviceInfo.Abstractions.xml",
+        "lib/netstandard1.0/Plugin.DeviceInfo.deps.json",
+        "lib/netstandard1.0/Plugin.DeviceInfo.dll",
+        "lib/netstandard1.0/Plugin.DeviceInfo.pdb",
+        "lib/netstandard1.0/Plugin.DeviceInfo.xml",
+        "xam.plugin.deviceinfo.3.0.1.nupkg.sha512",
+        "xam.plugin.deviceinfo.nuspec"
+      ]
+    },
     "Xamarin.Forms/2.3.4.247": {
       "sha512": "+6VN8IBSah7EcNJ4SV3pIhNA8tNlBaPLfr3+hQpPIllueJrXI5QtjM0tAJusPc2V1cYyC4YKvA1fs5c/A8RrBw==",
       "type": "package",
@@ -26324,6 +26454,7 @@
       "Newtonsoft.Json >= 8.0.3",
       "SQLite.Net-PCL >= 3.0.5",
       "Unity >= 4.0.1",
+      "Xam.Plugin.DeviceInfo >= 3.0.1",
       "Xamarin.Forms >= 2.3.4.247",
       "sqlite-net-pcl >= 1.1.2"
     ],
@@ -26347,6 +26478,7 @@
       "sqlite-net-pcl": "1.1.2",
       "SQLite.Net-PCL": "3.0.5",
       "Unity": "4.0.1",
+      "Xam.Plugin.DeviceInfo": "3.0.1",
       "Xamarin.Forms": "2.3.4.247"
     },
     "frameworks": {

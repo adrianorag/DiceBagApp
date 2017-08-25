@@ -4,6 +4,7 @@ using DiceBagApp.Models;
 using DiceBagApp.Services;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Plugin.DeviceInfo;
 
 namespace DiceBagApp.ViewModels
 {
@@ -18,10 +19,9 @@ namespace DiceBagApp.ViewModels
             _diceService = diceService;
             _diceDataBase = diceDataBase;
             Bag = bag == null ? GetBagConfiguration() : bag;
-
+            
             IsLoading = false;
-
-
+            
             GroupDices = new CustomObservableCollection<GroupDice>();
             LogRoll = new CustomObservableCollection<LogRoll>();
 
